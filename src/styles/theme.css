@@ -1,0 +1,240 @@
+/* Cool Surfers Morocco — design tokens */
+:root {
+  /* Palette */
+  --color-shell: #fbf6ec; /* primary light background */
+  --color-coconut: #f2ebd8; /* secondary light background */
+  --color-sand: #ede8db; /* tab/segmented-control background */
+  --color-husk: #a98662; /* muted tan text/accent */
+  --color-bark: #3a2a1e; /* dark brown — text & dark sections */
+  --color-lime: #a8d24a; /* palm lime — primary CTA */
+  --color-coral: #d6602e; /* burnt coral — secondary accent */
+  --color-white: #ffffff;
+
+  /* Type */
+  --font-display: 'TAN Nimbus', Georgia, serif;
+  --font-heading: 'Open Sauce One', Georgia, serif;
+  --font-body: 'Open Sauce Sans', sans-serif;
+
+  --nav-height: 72px;
+}
+
+@font-face {
+  font-family: 'TAN Nimbus';
+  src: url('/fonts/tan-nimbus.otf') format('opentype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/open-sauce/OpenSauceOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/open-sauce/OpenSauceOne-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/open-sauce/OpenSauceOne-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sauce Sans';
+  src: url('/fonts/open-sauce/OpenSauceSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sauce Sans';
+  src: url('/fonts/open-sauce/OpenSauceSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sauce Sans';
+  src: url('/fonts/open-sauce/OpenSauceSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sauce Sans';
+  src: url('/fonts/open-sauce/OpenSauceSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  overflow-x: hidden;
+  background: var(--color-shell);
+  font-family: var(--font-body);
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Responsive grid utilities shared across pages */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.grid-amenities {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 960px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .grid-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid-4,
+  .grid-amenities {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .grid-amenities {
+    grid-template-columns: 1fr;
+  }
+  .hide-mobile {
+    display: none !important;
+  }
+  .show-mobile {
+    display: flex !important;
+  }
+}
+
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--color-bark);
+  background: var(--color-coconut);
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  padding: 14px 18px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: vertical;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-lime);
+  box-shadow: 0 0 0 3px rgba(168, 210, 74, 0.15);
+}
+input::placeholder,
+textarea::placeholder {
+  color: rgba(58, 42, 30, 0.4);
+}
+select {
+  appearance: none;
+  -webkit-appearance: none;
+}
+select option {
+  background: var(--color-shell);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.img-hover-zoom {
+  overflow: hidden;
+}
+.img-hover-zoom img {
+  transition: transform 0.4s;
+}
+.img-hover-zoom:hover img {
+  transform: scale(1.04);
+}
+.img-hover-zoom-slow img {
+  transition: transform 0.5s;
+}
+.img-hover-zoom-slow:hover img {
+  transform: scale(1.05);
+}
+.hover-lift {
+  transition: transform 0.2s;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.ui-btn {
+  cursor: pointer;
+}
+.ui-btn[data-variant='primary']:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(168, 210, 74, 0.45);
+}
+.ui-btn[data-variant='dark']:hover {
+  background: #4a3626 !important;
+}
+.ui-btn[data-variant='coral']:hover {
+  background: #c0552a !important;
+}
+.ui-btn[data-variant='outline-light']:hover {
+  background: rgba(251, 246, 236, 0.2) !important;
+}
+.ui-btn[data-variant='outline-dark']:hover {
+  background: rgba(58, 42, 30, 0.18) !important;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(9px);
+  }
+}
