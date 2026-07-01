@@ -58,8 +58,9 @@ export default function About() {
         image={IMAGES.aboutUs}
         eyebrow="Who We Are"
         title={<>The people behind<br />the good vibes.</>}
-        heightVh={52}
-        minHeight={360}
+        subtitle="Two local surfers, one shared dream. Meet the team that turns every stay into something you'll never forget."
+        heightVh={68}
+        minHeight={500}
         bgPosition="center 30%"
         gradientFrom="rgba(58,42,30,0.6)"
         gradientTo="rgba(58,42,30,0.45)"

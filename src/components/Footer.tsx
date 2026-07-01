@@ -17,19 +17,11 @@ export default function Footer() {
             <img
               src="/images/csm-logo.png"
               alt="Cool Surfers Morocco"
-              style={{ height: 36, width: 'auto', marginBottom: 20, filter: 'brightness(0) invert(1)' }}
+              style={{ height: 56, width: 'auto', marginBottom: 20, filter: 'brightness(0) invert(1)' }}
             />
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'rgba(251,246,236,0.5)', lineHeight: 1.7 }}>
               No stress, no shoes, just good vibes. Tamraght, Morocco.
             </p>
-            <a
-              href={SITE.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 20, color: 'var(--color-lime)', fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 600 }}
-            >
-              {SITE.instagramHandle}
-            </a>
           </div>
           <div>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(251,246,236,0.3)', marginBottom: 20 }}>
@@ -58,6 +50,14 @@ export default function Footer() {
                 style={{ color: 'var(--color-lime)', fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 600 }}
               >
                 WhatsApp: {SITE.whatsappDisplay}
+              </a>
+              <a
+                href={SITE.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'var(--color-lime)', fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 600 }}
+              >
+                {SITE.instagramHandle}
               </a>
             </div>
           </div>

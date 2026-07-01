@@ -61,8 +61,8 @@ export default function House() {
         eyebrow="Your Home in Morocco"
         title={<>Sun-drenched.<br />Welcoming.</>}
         subtitle="More than a place to sleep — a place to feel at home, two minutes from the ocean."
-        heightVh={55}
-        minHeight={380}
+        heightVh={68}
+        minHeight={500}
         bgPosition="center 40%"
         gradientFrom="rgba(58,42,30,0.55)"
         gradientTo="rgba(58,42,30,0.4)"

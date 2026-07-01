@@ -62,8 +62,9 @@ export default function Contact() {
         image={IMAGES.tamraghtMain}
         eyebrow="Get in Touch"
         title={<>Let's plan your<br />perfect week.</>}
-        heightVh={48}
-        minHeight={340}
+        subtitle="Tell us when you want to come, how many you are, and we'll take care of the rest. We usually reply within 24 hours."
+        heightVh={68}
+        minHeight={500}
         bgPosition="center 40%"
         gradientFrom="rgba(58,42,30,0.65)"
         gradientTo="rgba(58,42,30,0.5)"

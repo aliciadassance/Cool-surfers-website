@@ -1,3 +1,4 @@
+import React, { useEffect, useRef, useState } from 'react';
 import { IconArrowRight, IconWaveSine, IconSend2, IconFriends, IconChevronDown, IconBrandInstagram } from '@tabler/icons-react';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
@@ -56,49 +57,194 @@ const TESTIMONIALS = [
     avatarInitial: 'E',
     avatarTextColor: 'var(--color-shell)',
   },
+  {
+    quote:
+      "The surf & yoga combo week was exactly what I needed. Mornings in the water, afternoons on the mat, and evenings around the table with great people. I came back home completely recharged.",
+    name: 'Léa D.',
+    location: 'Belgium 🇧🇪',
+    avatarBg: 'var(--color-bark)',
+    avatarInitial: 'L',
+    avatarTextColor: 'var(--color-shell)',
+  },
+  {
+    quote:
+      "Five stars isn't enough. The location is stunning, the coaches genuinely care about your progression, and the whole vibe is so relaxed and welcoming. Tamraght is a magic place — go.",
+    name: 'Tom K.',
+    location: 'Germany 🇩🇪',
+    avatarBg: 'var(--color-lime)',
+    avatarInitial: 'T',
+    avatarTextColor: 'var(--color-bark)',
+  },
+  {
+    quote:
+      "I've done surf camps before but nothing like this. The team treats you like a guest at their home, not a customer. The food, the waves, the sunsets — I still think about it every day.",
+    name: 'Camille B.',
+    location: 'Switzerland 🇨🇭',
+    avatarBg: 'var(--color-coral)',
+    avatarInitial: 'C',
+    avatarTextColor: 'var(--color-shell)',
+  },
 ];
 
 const MOSAIC = [
-  { src: IMAGES.spotBananaPoint, alt: 'Banana Point', col: 1, row: '1 / 3' },
-  { src: IMAGES.teamHamza, alt: 'Team Hamza', col: 2, row: '1' },
-  { src: IMAGES.roomPrivate, alt: 'Private room', col: 3, row: '1' },
-  { src: IMAGES.fallSurf, alt: 'Fall surf', col: 2, row: '2' },
-  { src: IMAGES.spotCrocroBeach, alt: 'Crocro Beach', col: 3, row: '2' },
+  { src: IMAGES.spotBananaPoint, alt: 'Banana Point', col: 1, row: '1 / 3', dir: 'left',  delay: 0 },
+  { src: IMAGES.teamHamza,       alt: 'Team Hamza',   col: 2, row: '1',     dir: 'up',    delay: 0.1 },
+  { src: IMAGES.roomPrivate,     alt: 'Private room', col: 3, row: '1',     dir: 'right', delay: 0.15 },
+  { src: IMAGES.fallSurf,        alt: 'Fall surf',    col: 2, row: '2',     dir: 'up',    delay: 0.2 },
+  { src: IMAGES.spotCrocroBeach, alt: 'Crocro Beach', col: 3, row: '2',     dir: 'right', delay: 0.25 },
 ];
 
+const VISIBLE = 3;
+const GAP = 28;
+
+function TestimonialsCarousel() {
+  const [index, setIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [slideWidth, setSlideWidth] = useState(0);
+  const maxIndex = TESTIMONIALS.length - VISIBLE;
+
+  useEffect(() => {
+    const measure = () => {
+      if (containerRef.current) {
+        const w = containerRef.current.offsetWidth;
+        setSlideWidth((w + GAP) / VISIBLE);
+      }
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
+  const prev = () => setIndex((i) => Math.max(0, i - 1));
+  const next = () => setIndex((i) => Math.min(maxIndex, i + 1));
+
+  const arrowStyle = (disabled: boolean): React.CSSProperties => ({
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    zIndex: 2,
+    width: 44,
+    height: 44,
+    borderRadius: '50%',
+    border: '1.5px solid var(--color-bark)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'var(--color-shell)',
+    cursor: disabled ? 'default' : 'pointer',
+    opacity: disabled ? 0.2 : 1,
+    transition: 'opacity 0.2s',
+    flexShrink: 0,
+  });
+
+  return (
+    <section style={{ padding: '104px 32px', background: 'var(--color-shell)' }}>
+      <div className="container" style={{ padding: 0 }}>
+        <div style={{ textAlign: 'center', marginBottom: 56 }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-husk)', marginBottom: 14 }}>
+            Guest Stories
+          </p>
+          <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(30px,4vw,48px)', fontWeight: 700, color: 'var(--color-bark)', lineHeight: 1.1 }}>
+            Straight from the surf house.
+          </h2>
+        </div>
+
+        <div style={{ position: 'relative', padding: '0 56px' }}>
+          <button onClick={prev} disabled={index === 0} style={{ ...arrowStyle(index === 0), left: 0 }} aria-label="Previous">
+            <IconArrowRight size={16} stroke={2.5} style={{ transform: 'rotate(180deg)' }} color="var(--color-bark)" />
+          </button>
+
+          <div ref={containerRef} style={{ overflow: 'hidden' }}>
+            <div style={{
+              display: 'flex',
+              gap: GAP,
+              transition: 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              transform: `translateX(-${index * slideWidth}px)`,
+            }}>
+              {TESTIMONIALS.map((t) => (
+                <div key={t.name} style={{ flex: `0 0 calc((100% - ${GAP * (VISIBLE - 1)}px) / ${VISIBLE})` }}>
+                  <TestimonialCard {...t} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button onClick={next} disabled={index === maxIndex} style={{ ...arrowStyle(index === maxIndex), right: 0 }} aria-label="Next">
+            <IconArrowRight size={16} stroke={2.5} color="var(--color-bark)" />
+          </button>
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 40 }}>
+          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              aria-label={`Slide ${i + 1}`}
+              style={{
+                width: i === index ? 24 : 8, height: 8, borderRadius: 100,
+                background: i === index ? 'var(--color-bark)' : 'rgba(58,42,30,0.2)',
+                border: 'none', cursor: 'pointer', padding: 0,
+                transition: 'width 0.3s, background 0.3s',
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
+  const mosaicRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const grid = mosaicRef.current;
+    if (!grid) return;
+    const items = grid.querySelectorAll<HTMLElement>('.mosaic-item');
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          items.forEach((el) => el.classList.add('in-view'));
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(grid);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Layout transparentNav>
       {/* HERO */}
       <section style={{ position: 'relative', height: '100vh', minHeight: 640, overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: `url('${IMAGES.packagesMain}')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(150deg,rgba(58,42,30,0.75) 0%,rgba(58,42,30,0.45) 55%,rgba(58,42,30,0.15) 100%)' }} />
-        <div className="container" style={{ position: 'relative', zIndex: 2, height: '100%', padding: '80px 32px 130px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 24, width: 'fit-content' }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-lime)', display: 'block', animation: 'bounce 2s infinite' }} />
-            <span style={{ color: 'rgba(251,246,236,0.9)', fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-              Tamraght · Taghazout Bay · Morocco
-            </span>
+        <div className="container hero-content" style={{}}>
+          <div className="hero-top">
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 24, width: 'fit-content' }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-lime)', display: 'block', animation: 'bounce 2s infinite' }} />
+              <span style={{ color: 'rgba(251,246,236,0.9)', fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                Tamraght · Taghazout Bay · Morocco
+              </span>
+            </div>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,5vw,68px)', color: 'var(--color-shell)', lineHeight: 1.13, letterSpacing: '-0.02em', marginBottom: 22 }}>
+              Come for the waves.<br />Stay for the crew.
+            </h1>
+            <p className="hero-subtitle" style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(13px,1.3vw,16px)', color: 'rgba(251,246,236,0.82)', marginBottom: 36, lineHeight: 1.6 }}>
+              All-inclusive surf camp in Morocco. Daily coaching, great food, and people you'll never forget.<br />Starting from €290.
+            </p>
           </div>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,5vw,68px)', color: 'var(--color-shell)', lineHeight: 1.13, letterSpacing: '-0.02em', marginBottom: 22, maxWidth: 740 }}>
-            Come for the waves.
-            <br />
-            Stay for the crew.
-          </h1>
-          <p style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(13px,1.3vw,16px)', color: 'rgba(251,246,236,0.82)', marginBottom: 24, maxWidth: 420, lineHeight: 1.6 }}>
-            All-inclusive surf camp in Morocco. Daily coaching, great food, and people you'll never forget. Starting from €290.
-          </p>
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-            <Button href="/contact" size="lg" variant="primary" icon={<IconArrowRight size={16} stroke={2.5} />}>
-              Book Your Week
-            </Button>
-            <Button href="/packages" size="lg" variant="outline-light">
-              See Packages
-            </Button>
+          <div className="hero-bottom">
+            <div className="hero-ctas" style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+              <Button href="/contact" size="lg" variant="primary" icon={<IconArrowRight size={16} stroke={2.5} />}>
+                Book Your Week
+              </Button>
+              <Button href="/packages" size="lg" variant="outline-light">
+                See Packages
+              </Button>
+            </div>
           </div>
-          <Badge variant="dot-pill" style={{ marginTop: 18 }}>
-            Returning guest? 10% off — just mention it when booking
-          </Badge>
         </div>
         <div style={{ position: 'absolute', bottom: 36, right: 40, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
           <span style={{ color: 'rgba(251,246,236,0.5)', fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', writingMode: 'vertical-rl' }}>
@@ -109,6 +255,15 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* RETURNING GUEST BANDEAU */}
+      <div style={{ background: 'var(--color-coral)', padding: '14px 32px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+        <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'rgba(251,246,236,0.6)', flexShrink: 0, display: 'block' }} />
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 600, color: 'var(--color-shell)', letterSpacing: '0.04em', textAlign: 'center' }}>
+          Returning guest? <strong style={{ fontWeight: 700 }}>10% off</strong> your next stay — just mention it when booking.
+        </p>
+        <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'rgba(251,246,236,0.6)', flexShrink: 0, display: 'block' }} />
+      </div>
 
       {/* ABOUT PREVIEW */}
       <section style={{ padding: '104px 32px', background: 'var(--color-shell)' }}>
@@ -174,7 +329,7 @@ export default function Home() {
                 <br />
                 experience Morocco.
               </h2>
-              <Badge variant="dot-pill" style={{ marginTop: 16 }}>
+              <Badge variant="dot-pill" background="var(--color-coral)" textColor="var(--color-shell)" dotColor="var(--color-shell)" style={{ marginTop: 16 }}>
                 Returning guests get 10% off — ask us when booking
               </Badge>
             </div>
@@ -226,19 +381,29 @@ export default function Home() {
       </section>
 
       {/* VIBE / PHOTO GRID */}
-      <section style={{ background: 'var(--color-bark)', padding: '104px 32px' }}>
+      <section style={{ background: 'var(--color-bark)', padding: '104px 32px', overflow: 'hidden' }}>
         <div className="container" style={{ padding: 0 }}>
-          <div style={{ marginBottom: 56 }}>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-lime)', marginBottom: 14 }}>
-              The Vibe
-            </p>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px,3vw,44px)', color: 'var(--color-shell)', lineHeight: 1.05, maxWidth: 600 }}>
-              A week you won't stop talking about.
-            </h2>
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 56, flexWrap: 'wrap', gap: 20 }}>
+            <div>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-lime)', marginBottom: 14 }}>
+                The Vibe
+              </p>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px,3vw,44px)', color: 'var(--color-shell)', lineHeight: 1.3, maxWidth: 600 }}>
+                A week you won't stop talking about.
+              </h2>
+            </div>
+            <Button href="/about" variant="outline-light" size="md" icon={<IconArrowRight size={15} stroke={2.5} />}>
+              Meet the Cool Surfers team
+            </Button>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridTemplateRows: '280px 280px', gap: 10, borderRadius: 20, overflow: 'hidden' }}>
+          <div ref={mosaicRef} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridTemplateRows: '280px 280px', gap: 10, borderRadius: 20 }}>
             {MOSAIC.map((m) => (
-              <div key={m.alt} className="img-hover-zoom-slow" style={{ gridColumn: m.col, gridRow: m.row, overflow: 'hidden' }}>
+              <div
+                key={m.alt}
+                className="mosaic-item"
+                data-dir={m.dir}
+                style={{ gridColumn: m.col, gridRow: m.row, overflow: 'hidden', animationDelay: `${m.delay}s` }}
+              >
                 <img src={m.src} alt={m.alt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             ))}
@@ -247,23 +412,7 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section style={{ padding: '104px 32px', background: 'var(--color-shell)' }}>
-        <div className="container" style={{ padding: 0 }}>
-          <div style={{ textAlign: 'center', marginBottom: 56 }}>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-husk)', marginBottom: 14 }}>
-              Guest Stories
-            </p>
-            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(30px,4vw,48px)', fontWeight: 700, color: 'var(--color-bark)', lineHeight: 1.1 }}>
-              Straight from the surf house.
-            </h2>
-          </div>
-          <div className="grid-3">
-            {TESTIMONIALS.map((t) => (
-              <TestimonialCard key={t.name} {...t} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <TestimonialsCarousel />
 
       {/* INSTAGRAM CTA */}
       <section style={{ background: 'var(--color-husk)', padding: '80px 32px', textAlign: 'center' }}>

@@ -49,7 +49,7 @@ export default function Nav({ transparentOnTop = false }: NavProps) {
       >
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           <Link to="/" style={{ flexShrink: 0 }}>
-            <img src="/images/csm-logo.png" alt="Cool Surfers Morocco" style={{ height: 44, width: 'auto', objectFit: 'contain' }} />
+            <img src="/images/csm-logo.png" alt="Cool Surfers Morocco" style={{ height: 64, width: 'auto', objectFit: 'contain' }} />
           </Link>
           <div className="hide-mobile" style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
             {NAV_LINKS.map((link) => {

@@ -33,8 +33,8 @@ export default function Packages() {
         eyebrow="All-Inclusive Surf Packages"
         title="Find your perfect week."
         subtitle="Everything taken care of — transfers, food, surf coaching, and a house full of good people."
-        heightVh={52}
-        minHeight={380}
+        heightVh={68}
+        minHeight={500}
         bgPosition="center 35%"
         gradientFrom="rgba(58,42,30,0.65)"
         gradientTo="rgba(58,42,30,0.5)"

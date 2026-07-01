@@ -229,6 +229,63 @@ select option {
   background: rgba(58, 42, 30, 0.18) !important;
 }
 
+@keyframes slideFromLeft {
+  from { opacity: 0; transform: translateX(-120px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideFromRight {
+  from { opacity: 0; transform: translateX(120px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(60px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mosaic-item { opacity: 0; }
+
+.mosaic-item.in-view[data-dir='left'] {
+  animation: slideFromLeft 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+.mosaic-item.in-view[data-dir='right'] {
+  animation: slideFromRight 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+.mosaic-item.in-view[data-dir='up'] {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 140px 32px 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+@media (max-width: 640px) {
+  .hero-content {
+    padding: 100px 24px 56px;
+    justify-content: space-between;
+  }
+  .hero-content h1 {
+    font-size: 36px !important;
+    margin-bottom: 14px !important;
+    line-height: 1.1 !important;
+  }
+  .hero-content .hero-subtitle {
+    font-size: 14px !important;
+  }
+  .hero-content .hero-ctas {
+    flex-direction: column;
+    gap: 10px !important;
+  }
+  .hero-content .hero-badge {
+    margin-top: 14px !important;
+  }
+}
+
 @keyframes bounce {
   0%,
   100% {
