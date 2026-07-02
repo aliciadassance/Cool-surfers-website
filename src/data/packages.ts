@@ -20,6 +20,31 @@ export const PACKAGE_OPTIONS = [
   { value: 'not sure', label: "Not sure yet — help me choose!" },
 ] as const;
 
+export const PACKAGE_INCLUDED = [
+  'Airport or bus station transfers',
+  '3 meals/day + pre-dinner tea',
+  'Daily surf coaching or guiding',
+  'Board + wetsuit equipment',
+  'Shared or private accommodation',
+  'Access to the daily schedule & activities',
+];
+
+export const ADD_ONS = [
+  { icon: 'mountain', label: 'Paradise Valley Trip', price: 30 },
+  { icon: 'bath', label: 'Hammam & Massage', price: 55 },
+  { icon: 'route', label: 'Imsouane Trip', price: 40 },
+  { icon: 'dunes', label: 'Dunes Sandboarding', price: 30 },
+  { icon: 'skateboard', label: 'Surfskate Sessions', price: 7 },
+  { icon: 'chefHat', label: 'Cooking Class', price: 15 },
+] as const;
+
+export const SEASONS = [
+  { icon: 'sun', season: 'Summer', months: 'Jun – Aug', desc: 'Hot and sunny, with lively, crowded beaches. Great energy, warmer water.' },
+  { icon: 'leaf', season: 'Spring', months: 'Mar – May', desc: 'Mild weather and gentler, inconsistent waves — ideal for beginners finding their feet.' },
+  { icon: 'wave', season: 'Fall', months: 'Sep – Nov', desc: 'Our favorite: consistent swells and still-warm water. The sweet spot for most surfers.' },
+  { icon: 'umbrella', season: 'Winter', months: 'Dec – Feb', desc: 'Fewer crowds and the most powerful, consistent swells of the year — best for experienced surfers.' },
+] as const;
+
 export const DAILY_SCHEDULE = [
   { time: '08:30', title: 'Breakfast', desc: 'Fuel up together before the session', tone: 'light' as const },
   { time: '10:00', title: 'Surf spot hunt', desc: 'Check conditions · find the best waves', tone: 'dark' as const },

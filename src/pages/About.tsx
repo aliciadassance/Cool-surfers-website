@@ -193,7 +193,7 @@ export default function About() {
           <p style={{ fontFamily: 'var(--font-heading)', fontSize: 18, color: 'rgba(58,42,30,0.72)', marginBottom: 36, lineHeight: 1.55 }}>
             Spots fill up fast. Book your week in Tamraght and see what everyone keeps coming back for.
           </p>
-          <Button href="/contact" variant="dark" size="xl" icon={<IconArrowRight size={16} stroke={2.5} />}>
+          <Button href="/booking" variant="dark" size="xl" icon={<IconArrowRight size={16} stroke={2.5} />}>
             Book Your Stay
           </Button>
         </div>

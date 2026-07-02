@@ -1,24 +1,48 @@
 import { useState } from 'react';
-import { IconBrandWhatsapp } from '@tabler/icons-react';
+import {
+  IconBrandWhatsapp,
+  IconMountain,
+  IconBath,
+  IconRoute,
+  IconPyramid,
+  IconSkateboard,
+  IconChefHat,
+  IconSun,
+  IconLeaf,
+  IconWaveSine,
+  IconUmbrella,
+} from '@tabler/icons-react';
 import Layout from '../components/Layout';
 import PageHero from '../components/PageHero';
 import Button from '../components/Button';
+import IconTile from '../components/IconTile';
 import PackageDetailCard from '../components/PackageDetailCard';
+import CheckList from '../components/CheckList';
 import ScheduleItem from '../components/ScheduleItem';
 import { IMAGES } from '../data/images';
-import { PRICES, ROOM_LABELS, DAILY_SCHEDULE, type RoomType } from '../data/packages';
+import { PRICES, ROOM_LABELS, DAILY_SCHEDULE, PACKAGE_INCLUDED, ADD_ONS, SEASONS, type RoomType } from '../data/packages';
 import { whatsappLink } from '../data/site';
+
+const ADD_ON_ICONS = {
+  mountain: IconMountain,
+  bath: IconBath,
+  route: IconRoute,
+  dunes: IconPyramid,
+  skateboard: IconSkateboard,
+  chefHat: IconChefHat,
+};
+
+const SEASON_ICONS = {
+  sun: IconSun,
+  leaf: IconLeaf,
+  wave: IconWaveSine,
+  umbrella: IconUmbrella,
+};
 
 const ROOM_TABS: { value: RoomType; label: string }[] = [
   { value: 'triple', label: 'Triple Shared' },
   { value: 'double', label: 'Double Shared' },
   { value: 'private', label: 'Private Room' },
-];
-
-const PRICING_ROWS: { type: RoomType; label: string; sub: string }[] = [
-  { type: 'triple', label: 'Triple Shared', sub: '3-bed shared room' },
-  { type: 'double', label: 'Double Shared', sub: '2-bed shared room' },
-  { type: 'private', label: 'Private Room', sub: 'Your own space' },
 ];
 
 export default function Packages() {
@@ -50,8 +74,10 @@ export default function Packages() {
       {/* ROOM SELECTOR */}
       <section style={{ background: 'var(--color-shell)', padding: '56px 32px 0' }}>
         <div className="container" style={{ padding: 0 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', marginBottom: 8 }}>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 600, color: 'var(--color-bark)', opacity: 0.6 }}>Showing prices for:</p>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 600, color: 'var(--color-bark)', opacity: 0.6, textAlign: 'center', marginBottom: 12 }}>
+            Select your room & find your package
+          </p>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <div style={{ display: 'inline-flex', background: 'var(--color-sand)', borderRadius: 100, padding: 4, gap: 4 }}>
               {ROOM_TABS.map((tab) => {
                 const active = roomType === tab.value;
@@ -76,9 +102,6 @@ export default function Packages() {
               })}
             </div>
           </div>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--color-husk)', marginBottom: 0 }}>
-            {roomLabel} selected — prices update automatically below
-          </p>
         </div>
       </section>
 
@@ -89,22 +112,22 @@ export default function Packages() {
             <PackageDetailCard
               image={IMAGES.package4Day}
               tagLabel="Weekend Getaway"
-              title="4 Days · 3 Nights"
-              subtitle="Surf coaching package"
+              title="Quick Getaway"
+              subtitle="4 Days · 3 Nights"
               price={`€${prices.d4}`}
               priceSub={`per person · ${roomLabel}`}
               includedItems={['Airport or bus station transfers', '3 meals/day + pre-dinner tea', 'Morning surf coaching or guiding', 'Board + wetsuit equipment', 'Accommodation included']}
-              ctaHref="/contact"
+              ctaHref="/booking"
               ctaVariant="dark"
             />
             <PackageDetailCard
               image={IMAGES.package7Day}
-              title="7 Days · 7 Nights"
-              subtitle="Full surf coaching package"
+              title="Full Surf Experience"
+              subtitle="7 Days · 7 Nights"
               price={`€${prices.d7}`}
               priceSub={`per person · ${roomLabel}`}
               includedItems={['Everything in weekend package', 'Grand Souk of Agadir visit', '7 afternoons of free surf', 'Optional hammam visit', 'Full 7-day daily schedule']}
-              ctaHref="/contact"
+              ctaHref="/booking"
               ctaVariant="primary"
               highlighted
             />
@@ -112,54 +135,80 @@ export default function Packages() {
               image={IMAGES.packageYoga}
               tagLabel="Surf & Yoga"
               tagBg="rgba(214,96,46,0.9)"
-              title="7 Days · 7 Nights"
-              subtitle="Surf + 5 yoga sessions"
+              title="Surf & Yoga Experience"
+              subtitle="Full Surf Experience + 5 Yoga Sessions"
               price={`€${prices.yoga}`}
               priceSub={`per person · ${roomLabel}`}
               includedItems={['Everything in full-week package', '5 dedicated yoga sessions', 'Balance body & mind', 'Evening stretching & breathing', 'Perfect surf recovery blend']}
-              ctaHref="/contact"
+              ctaHref="/booking"
               ctaVariant="coral"
             />
           </div>
         </div>
       </section>
 
-      {/* FULL PRICING TABLE */}
+      {/* INCLUDED + ADD-ONS */}
       <section style={{ background: 'var(--color-bark)', padding: '88px 32px' }}>
         <div className="container" style={{ padding: 0 }}>
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-lime)', marginBottom: 14 }}>
-              Full Pricing
+              What You Get
             </p>
-            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px,4vw,44px)', fontWeight: 700, color: 'var(--color-shell)' }}>All prices per person</h2>
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px,4vw,44px)', fontWeight: 700, color: 'var(--color-shell)' }}>Included, plus a few extras.</h2>
           </div>
-          <div style={{ background: 'rgba(251,246,236,0.06)', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(251,246,236,0.1)' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', padding: '20px 32px', borderBottom: '1px solid rgba(251,246,236,0.1)' }}>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(251,246,236,0.4)' }}>Room Type</p>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(251,246,236,0.4)', textAlign: 'center' }}>4 Days</p>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(251,246,236,0.4)', textAlign: 'center' }}>7 Nights Surf</p>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(251,246,236,0.4)', textAlign: 'center' }}>Surf + Yoga</p>
+          <div className="grid-2" style={{ alignItems: 'stretch' }}>
+            <div style={{ background: 'rgba(251,246,236,0.06)', borderRadius: 24, border: '1px solid rgba(251,246,236,0.1)', padding: 36 }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-lime)', marginBottom: 20 }}>
+                Included in every package
+              </p>
+              <CheckList items={PACKAGE_INCLUDED} textColor="rgba(251,246,236,0.85)" fontSize={15} size={18} gap={16} />
             </div>
-            {PRICING_ROWS.map((row, i) => (
-              <div
-                key={row.type}
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr 1fr 1fr',
-                  padding: '20px 32px',
-                  borderBottom: i < PRICING_ROWS.length - 1 ? '1px solid rgba(251,246,236,0.07)' : 'none',
-                  alignItems: 'center',
-                }}
-              >
-                <div>
-                  <p style={{ fontFamily: 'var(--font-heading)', fontSize: 16, fontWeight: 600, color: 'var(--color-shell)' }}>{row.label}</p>
-                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'rgba(251,246,236,0.4)' }}>{row.sub}</p>
-                </div>
-                <p style={{ fontFamily: 'var(--font-display)', fontSize: 28, color: 'var(--color-shell)', textAlign: 'center' }}>€{PRICES[row.type].d4}</p>
-                <p style={{ fontFamily: 'var(--font-display)', fontSize: 28, color: 'var(--color-lime)', textAlign: 'center' }}>€{PRICES[row.type].d7}</p>
-                <p style={{ fontFamily: 'var(--font-display)', fontSize: 28, color: 'var(--color-shell)', textAlign: 'center' }}>€{PRICES[row.type].yoga}</p>
+            <div style={{ background: 'rgba(251,246,236,0.06)', borderRadius: 24, border: '1px solid rgba(251,246,236,0.1)', padding: 36 }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-lime)', marginBottom: 20 }}>
+                Add-ons, at extra cost
+              </p>
+              <div className="grid-addons">
+                {ADD_ONS.map((addOn) => {
+                  const Icon = ADD_ON_ICONS[addOn.icon];
+                  return (
+                    <div key={addOn.label} style={{ background: 'rgba(242,235,216,0.14)', borderRadius: 16, padding: 20, textAlign: 'center', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                      <div style={{ marginBottom: 10, color: 'var(--color-lime)', display: 'flex', justifyContent: 'center' }}>
+                        <Icon size={24} stroke={1.8} />
+                      </div>
+                      <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, color: 'var(--color-shell)', margin: 0, flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{addOn.label}</p>
+                      <p style={{ fontFamily: 'var(--font-display)', fontSize: 16, color: 'var(--color-lime)', marginTop: 18 }}>€{addOn.price}</p>
+                    </div>
+                  );
+                })}
               </div>
-            ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHEN TO COME */}
+      <section style={{ background: 'var(--color-shell)', padding: '88px 32px' }}>
+        <div className="container" style={{ padding: 0 }}>
+          <div style={{ textAlign: 'center', marginBottom: 56 }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-husk)', marginBottom: 14 }}>
+              Plan Your Trip
+            </p>
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px,4vw,44px)', fontWeight: 700, color: 'var(--color-bark)' }}>When to come?</h2>
+          </div>
+          <div className="grid-4">
+            {SEASONS.map((s) => {
+              const Icon = SEASON_ICONS[s.icon];
+              return (
+                <div key={s.season} style={{ background: 'var(--color-coconut)', borderRadius: 20, padding: 28 }}>
+                  <IconTile size={44} background="var(--color-bark)" style={{ marginBottom: 18 }}>
+                    <Icon size={20} color="var(--color-lime)" stroke={1.8} />
+                  </IconTile>
+                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 700, color: 'var(--color-bark)', marginBottom: 2 }}>{s.season}</h3>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, color: 'var(--color-husk)', marginBottom: 12 }}>{s.months}</p>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(58,42,30,0.7)', lineHeight: 1.6 }}>{s.desc}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -178,7 +227,7 @@ export default function Packages() {
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'var(--color-bark)', opacity: 0.7, lineHeight: 1.75, marginBottom: 32 }}>
                 Life at Cool Surfers follows the rhythm of the sun and the tides. Every day is a unique adventure — but here's what a great day looks like.
               </p>
-              <Button href="/contact" variant="primary" size="md">
+              <Button href="/booking" variant="primary" size="md">
                 Book a Spot →
               </Button>
             </div>
@@ -196,7 +245,7 @@ export default function Packages() {
         <div style={{ maxWidth: 680, margin: '0 auto' }}>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px,4vw,52px)', color: 'var(--color-bark)', lineHeight: 1, marginBottom: 16 }}>Ready to book?</h2>
           <p style={{ fontFamily: 'var(--font-heading)', fontSize: 18, color: 'rgba(58,42,30,0.75)', marginBottom: 36, lineHeight: 1.55 }}>
-            Spots are limited. Reach out on WhatsApp or fill in the contact form and we'll get back to you within 24 hours.
+            Spots are limited. Reach out on WhatsApp or fill in the booking form and we'll get back to you within 24 hours.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Button
@@ -209,8 +258,8 @@ export default function Packages() {
             >
               WhatsApp Us
             </Button>
-            <Button href="/contact" variant="outline-dark" size="lg">
-              Contact Form →
+            <Button href="/booking" variant="outline-dark" size="lg">
+              Booking Form →
             </Button>
           </div>
         </div>

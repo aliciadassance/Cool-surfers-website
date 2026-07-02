@@ -109,6 +109,11 @@ img {
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
 }
+.grid-booking {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 48px;
+}
 .grid-4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -163,8 +168,15 @@ img {
   gap: 16px;
 }
 
+.grid-addons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
 @media (max-width: 960px) {
-  .grid-2 {
+  .grid-2,
+  .grid-booking {
     grid-template-columns: 1fr;
     gap: 32px;
   }
@@ -175,12 +187,16 @@ img {
   .grid-amenities {
     grid-template-columns: 1fr 1fr;
   }
+  .grid-addons {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 @media (max-width: 640px) {
   .grid-2,
   .grid-3,
   .grid-4,
-  .grid-amenities {
+  .grid-amenities,
+  .grid-addons {
     grid-template-columns: 1fr;
   }
   .hide-mobile {

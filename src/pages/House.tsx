@@ -146,7 +146,7 @@ export default function House() {
                 on your doorstep.
               </h2>
             </div>
-            <Button href="/contact" variant="outline-light" size="md">
+            <Button href="/booking" variant="outline-light" size="md">
               Ride the waves →
             </Button>
           </div>

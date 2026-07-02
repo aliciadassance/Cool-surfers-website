@@ -72,7 +72,7 @@ export default function Nav({ transparentOnTop = false }: NavProps) {
                 </Link>
               );
             })}
-            <Button href="/contact" size="nav" variant="primary">
+            <Button href="/booking" size="nav" variant="primary">
               Book Now
             </Button>
           </div>
@@ -123,7 +123,7 @@ export default function Nav({ transparentOnTop = false }: NavProps) {
             );
           })}
           <div style={{ marginTop: 32 }}>
-            <Button href="/contact" variant="primary" size="xl" fullWidth block>
+            <Button href="/booking" variant="primary" size="xl" fullWidth block>
               Book Now
             </Button>
           </div>

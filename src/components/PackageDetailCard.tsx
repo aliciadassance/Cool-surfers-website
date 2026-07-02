@@ -37,6 +37,12 @@ export default function PackageDetailCard({
   const includedLabelColor = highlighted ? 'rgba(251,246,236,0.4)' : 'var(--color-husk)';
   const includedTextColor = highlighted ? 'rgba(251,246,236,0.8)' : 'var(--color-bark)';
 
+  const badge = highlighted
+    ? { label: '⭐ Most Popular', bg: 'var(--color-lime)', color: 'var(--color-bark)' }
+    : tagLabel
+    ? { label: tagLabel, bg: tagBg, color: 'var(--color-shell)' }
+    : null;
+
   return (
     <div
       style={{
@@ -49,19 +55,12 @@ export default function PackageDetailCard({
         position: 'relative',
       }}
     >
-      {highlighted && (
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, background: 'var(--color-lime)', textAlign: 'center', padding: '6px 0', zIndex: 3 }}>
-          <span style={{ fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-bark)' }}>
-            ⭐ Most Popular
-          </span>
-        </div>
-      )}
-      <div style={{ position: 'relative', height: 220, overflow: 'hidden', marginTop: highlighted ? 32 : 0 }} className={highlighted ? '' : 'img-hover-zoom'}>
+      <div style={{ position: 'relative', height: 220, overflow: 'hidden' }} className={highlighted ? '' : 'img-hover-zoom'}>
         <img src={image} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-        {tagLabel && (
-          <div style={{ position: 'absolute', top: 16, left: 16, background: tagBg, borderRadius: 100, padding: '5px 14px', backdropFilter: 'blur(4px)' }}>
-            <span style={{ fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-shell)' }}>
-              {tagLabel}
+        {badge && (
+          <div style={{ position: 'absolute', top: 14, left: 14, background: badge.bg, borderRadius: 100, padding: '4px 12px', boxShadow: '0 2px 8px rgba(0,0,0,0.18)', backdropFilter: 'blur(4px)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ fontFamily: 'var(--font-body)', fontSize: 10.5, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: badge.color, whiteSpace: 'nowrap', textAlign: 'center', lineHeight: 1 }}>
+              {badge.label}
             </span>
           </div>
         )}
@@ -70,9 +69,9 @@ export default function PackageDetailCard({
         <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 24, fontWeight: 700, color: titleColor, marginBottom: 4 }}>{title}</h3>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: subtitleColor, marginBottom: 20 }}>{subtitle}</p>
         <div style={{ marginBottom: 24 }}>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: priceLabelColor, marginBottom: 4 }}>From</p>
-          <p style={{ fontFamily: 'var(--font-display)', fontSize: 40, color: titleColor, lineHeight: 1, letterSpacing: '-0.02em' }}>{price}</p>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: priceLabelColor, marginTop: 4 }}>{priceSub}</p>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: priceLabelColor, marginBottom: 8 }}>From</p>
+          <p style={{ fontFamily: 'var(--font-display)', fontSize: 32, color: titleColor, lineHeight: 1.2, letterSpacing: '-0.02em' }}>{price}</p>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: priceLabelColor, marginTop: 6 }}>{priceSub}</p>
         </div>
         <div style={{ background: includedBg, borderRadius: 16, padding: 20, marginBottom: 24 }}>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: includedLabelColor, marginBottom: 14 }}>

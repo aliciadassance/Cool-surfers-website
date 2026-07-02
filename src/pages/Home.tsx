@@ -237,7 +237,7 @@ export default function Home() {
           </div>
           <div className="hero-bottom">
             <div className="hero-ctas" style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-              <Button href="/contact" size="lg" variant="primary" icon={<IconArrowRight size={16} stroke={2.5} />}>
+              <Button href="/booking" size="lg" variant="primary" icon={<IconArrowRight size={16} stroke={2.5} />}>
                 Book Your Week
               </Button>
               <Button href="/packages" size="lg" variant="outline-light">
