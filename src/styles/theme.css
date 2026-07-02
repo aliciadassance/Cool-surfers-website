@@ -114,6 +114,49 @@ img {
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
+.carousel-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+.carousel-card {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: 320px;
+}
+@media (min-width: 640px) {
+  .carousel-card {
+    width: 360px;
+  }
+}
+.carousel-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(251,246,236,0.12);
+  border: 1.5px solid rgba(251,246,236,0.45);
+  color: var(--color-shell);
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.carousel-arrow:hover {
+  background: rgba(251,246,236,0.22);
+}
+.carousel-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
 .grid-amenities {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -262,6 +305,18 @@ select option {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+}
+
+@media (min-width: 1024px) {
+  .hero-content {
+    padding: 0 64px 140px;
+  }
+  .hero-content .hero-top {
+    max-width: 880px;
+  }
+  .hero-content .hero-bottom {
+    margin-top: 12px;
+  }
 }
 
 @media (max-width: 640px) {

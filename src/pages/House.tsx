@@ -1,4 +1,5 @@
-import { IconCheck, IconMapPin, IconArrowRight } from '@tabler/icons-react';
+import { useRef } from 'react';
+import { IconCheck, IconMapPin, IconArrowRight, IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
 import Layout from '../components/Layout';
 import PageHero from '../components/PageHero';
 import Button from '../components/Button';
@@ -23,7 +24,6 @@ const ROOMS = [
     title: 'Triple Shared Room',
     description: '3 beds in a shared room. Perfect for solo travelers looking to connect and for groups of friends traveling together.',
     features: ['Shared bathroom', 'Great for solo travelers', 'Fresh linen & towels'],
-    price: '€290',
     dark: false,
   },
   {
@@ -31,7 +31,6 @@ const ROOMS = [
     title: 'Double Shared Room',
     description: "2 beds in a shared room. A bit more intimate. Great for two friends traveling together or couples who don't mind sharing.",
     features: ['Shared bathroom', 'More intimate space', 'Fresh linen & towels'],
-    price: '€350',
     dark: false,
   },
   {
@@ -42,18 +41,29 @@ const ROOMS = [
     title: 'Private Room',
     description: 'Your own space after long days in the ocean. Ideal for those who value privacy, or couples looking for a dedicated getaway.',
     features: ['Private bathroom', 'Your own space', 'Perfect for couples'],
-    price: '€370',
     dark: true,
   },
 ];
 
 const SURF_SPOTS = [
-  { image: IMAGES.spotBananaPoint, name: 'Banana Point 🍌', tag: 'Our home break · All levels' },
-  { image: IMAGES.spotCrocroBeach, name: 'Crocro Beach', tag: 'Mellow beach break · Beginners' },
-  { image: IMAGES.spotDevilsRock, name: "Devil's Rock", tag: 'Powerful reef break · Advanced' },
+  { image: IMAGES.spotBananaPoint, name: 'Banana Point 🍌', tag: 'Our home break · All levels', description: 'A long, forgiving right-hander right in front of the house. Where you\'ll spend most mornings.' },
+  { image: IMAGES.spotCrocroBeach, name: 'Crocro Beach', tag: 'Mellow beach break · Beginners', description: 'Soft, rolling whitewash and a wide sandy beach. The go-to spot for first-timers finding their feet.' },
+  { image: IMAGES.spotDevilsRock, name: "Devil's Rock", tag: 'Powerful reef break · Advanced', description: 'A punchy reef break for experienced surfers chasing steeper, faster walls of water.' },
+  { image: IMAGES.fallSurf, name: 'Anza', tag: 'Long right point · Intermediate', description: 'A classic point break with long, workable rides. Just a short drive south of Tamraght.' },
+  { image: IMAGES.tamraghtMain, name: 'Panorama Point', tag: 'Exposed reef · All levels', description: 'A punchy, scenic setup with something for everyone, depending on the swell.' },
 ];
 
 export default function House() {
+  const spotsTrackRef = useRef<HTMLDivElement>(null);
+
+  const scrollSpots = (dir: 'left' | 'right') => {
+    const el = spotsTrackRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>('[data-carousel-card]');
+    const step = (card?.offsetWidth ?? 320) + 24;
+    el.scrollBy({ left: dir === 'left' ? -step : step, behavior: 'smooth' });
+  };
+
   return (
     <Layout>
       <PageHero
@@ -116,7 +126,7 @@ export default function House() {
           </div>
           <div className="grid-3">
             {ROOMS.map((room) => (
-              <RoomCard key={room.title} {...room} priceLabel="4-day package from" ctaHref="/packages" />
+              <RoomCard key={room.title} {...room} ctaHref="/packages" />
             ))}
           </div>
         </div>
@@ -136,18 +146,36 @@ export default function House() {
                 on your doorstep.
               </h2>
             </div>
+            <Button href="/contact" variant="outline-light" size="md">
+              Ride the waves →
+            </Button>
           </div>
-          <div className="grid-3">
-            {SURF_SPOTS.map((spot) => (
-              <div key={spot.name} className="img-hover-zoom" style={{ borderRadius: 20, overflow: 'hidden', position: 'relative', height: 320 }}>
-                <img src={spot.image} alt={spot.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(58,42,30,0.85) 0%,transparent 50%)' }} />
-                <div style={{ position: 'absolute', bottom: 24, left: 24 }}>
-                  <p style={{ fontFamily: 'var(--font-heading)', fontSize: 20, fontWeight: 700, color: 'var(--color-shell)', marginBottom: 4 }}>{spot.name}</p>
-                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(251,246,236,0.7)' }}>{spot.tag}</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <button type="button" aria-label="Previous spot" className="carousel-arrow" onClick={() => scrollSpots('left')}>
+              <IconChevronLeft size={18} stroke={2} />
+            </button>
+            <div className="carousel-track" ref={spotsTrackRef} style={{ flex: 1, minWidth: 0 }}>
+              {SURF_SPOTS.map((spot) => (
+                <div key={spot.name} className="carousel-card" data-carousel-card>
+                  <div style={{ background: 'rgba(242,235,216,0.94)', border: '1px solid rgba(58,42,30,0.06)', borderRadius: 24, padding: 14, height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <div className="img-hover-zoom" style={{ borderRadius: 16, overflow: 'hidden', position: 'relative', height: 280, flexShrink: 0 }}>
+                      <img src={spot.image} alt={spot.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(58,42,30,0.85) 0%,transparent 50%)' }} />
+                      <div style={{ position: 'absolute', bottom: 20, left: 20, right: 20 }}>
+                        <p style={{ fontFamily: 'var(--font-heading)', fontSize: 20, fontWeight: 700, color: 'var(--color-shell)', marginBottom: 4 }}>{spot.name}</p>
+                        <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(251,246,236,0.7)' }}>{spot.tag}</p>
+                      </div>
+                    </div>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'rgba(58,42,30,0.7)', lineHeight: 1.5, padding: '16px 6px 6px', flex: 1 }}>
+                      {spot.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <button type="button" aria-label="Next spot" className="carousel-arrow" onClick={() => scrollSpots('right')}>
+              <IconChevronRight size={18} stroke={2} />
+            </button>
           </div>
         </div>
       </section>

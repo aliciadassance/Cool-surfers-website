@@ -186,8 +186,8 @@ export default function About() {
 
       {/* CTA */}
       <section style={{ background: 'var(--color-lime)', padding: '88px 32px', textAlign: 'center' }}>
-        <div style={{ maxWidth: 600, margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px,4vw,52px)', color: 'var(--color-bark)', lineHeight: 1, marginBottom: 16 }}>
+        <div style={{ maxWidth: 720, margin: '0 auto' }}>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px,4vw,52px)', color: 'var(--color-bark)', lineHeight: 1.2, marginBottom: 16 }}>
             Come join the family.
           </h2>
           <p style={{ fontFamily: 'var(--font-heading)', fontSize: 18, color: 'rgba(58,42,30,0.72)', marginBottom: 36, lineHeight: 1.55 }}>

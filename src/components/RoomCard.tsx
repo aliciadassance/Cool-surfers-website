@@ -9,19 +9,16 @@ interface RoomCardProps {
   title: string;
   description: string;
   features: string[];
-  priceLabel: string;
-  price: string;
   ctaHref: string;
   dark?: boolean;
 }
 
-export default function RoomCard({ image, tagLabel, tagBg = 'var(--color-husk)', tagColor = 'var(--color-shell)', title, description, features, priceLabel, price, ctaHref, dark }: RoomCardProps) {
+export default function RoomCard({ image, tagLabel, tagBg = 'var(--color-husk)', tagColor = 'var(--color-shell)', title, description, features, ctaHref, dark }: RoomCardProps) {
   const bg = dark ? 'var(--color-bark)' : 'var(--color-shell)';
   const titleColor = dark ? 'var(--color-shell)' : 'var(--color-bark)';
   const descColor = dark ? 'rgba(251,246,236,0.55)' : 'var(--color-husk)';
   const featureColor = dark ? 'rgba(251,246,236,0.7)' : 'rgba(58,42,30,0.75)';
   const dividerColor = dark ? 'rgba(251,246,236,0.1)' : 'rgba(58,42,30,0.08)';
-  const priceLabelColor = dark ? 'rgba(251,246,236,0.45)' : 'var(--color-husk)';
 
   return (
     <div style={{ background: bg, borderRadius: 24, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
@@ -39,13 +36,9 @@ export default function RoomCard({ image, tagLabel, tagBg = 'var(--color-husk)',
         <div style={{ marginBottom: 24 }}>
           <CheckList items={features} textColor={featureColor} fontSize={13} size={14} />
         </div>
-        <div style={{ borderTop: `1px solid ${dividerColor}`, paddingTop: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: priceLabelColor }}>{priceLabel}</p>
-            <p style={{ fontFamily: 'var(--font-display)', fontSize: 28, color: titleColor }}>{price}</p>
-          </div>
+        <div style={{ borderTop: `1px solid ${dividerColor}`, paddingTop: 20, display: 'flex', justifyContent: 'flex-end' }}>
           <Button href={ctaHref} variant={dark ? 'primary' : 'dark'} size="sm">
-            Book →
+            Select your package →
           </Button>
         </div>
       </div>
