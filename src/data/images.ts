@@ -17,4 +17,13 @@ export const IMAGES = {
   fallSurf: `${BASE}/fall-surf.jpg`,
   tamraghtMain: `${BASE}/tamraght-main.jpg`,
   surfHouseMain: `${BASE}/surf-house-main.jpg`,
+  homeHero: `${BASE}/home-hero.jpg`,
+  homeAboutUs: `${BASE}/home-our-story.jpg`,
+  homeMosaic1: `${BASE}/home-mosaic-1.jpg`,
+  homeMosaic2: `${BASE}/home-mosaic-2.jpg`,
+  homeMosaic3: `${BASE}/home-mosaic-3.jpg`,
+  homeMosaic4: `${BASE}/home-mosaic-4.jpg`,
+  homeMosaic5: `${BASE}/home-mosaic-5.jpg`,
+  homePackageQuickGetaway: `${BASE}/home-package-quick-getaway.jpg`,
+  homePackageFullSurf: `${BASE}/home-package-full-surf.jpg`,
 } as const;

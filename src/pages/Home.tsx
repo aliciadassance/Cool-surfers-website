@@ -87,11 +87,11 @@ const TESTIMONIALS = [
 ];
 
 const MOSAIC = [
-  { src: IMAGES.spotBananaPoint, alt: 'Banana Point', col: 1, row: '1 / 3', dir: 'left',  delay: 0 },
-  { src: IMAGES.teamHamza,       alt: 'Team Hamza',   col: 2, row: '1',     dir: 'up',    delay: 0.1 },
-  { src: IMAGES.roomPrivate,     alt: 'Private room', col: 3, row: '1',     dir: 'right', delay: 0.15 },
-  { src: IMAGES.fallSurf,        alt: 'Fall surf',    col: 2, row: '2',     dir: 'up',    delay: 0.2 },
-  { src: IMAGES.spotCrocroBeach, alt: 'Crocro Beach', col: 3, row: '2',     dir: 'right', delay: 0.25 },
+  { src: IMAGES.homeMosaic1, alt: 'Banana Point', col: 1, row: '1 / 3', dir: 'left',  delay: 0 },
+  { src: IMAGES.homeMosaic2, alt: 'Team Hamza',   col: 2, row: '1',     dir: 'up',    delay: 0.1 },
+  { src: IMAGES.homeMosaic3, alt: 'Private room', col: 3, row: '1',     dir: 'right', delay: 0.15 },
+  { src: IMAGES.homeMosaic4, alt: 'Fall surf',    col: 2, row: '2',     dir: 'up',    delay: 0.2 },
+  { src: IMAGES.homeMosaic5, alt: 'Crocro Beach', col: 3, row: '2',     dir: 'right', delay: 0.25 },
 ];
 
 const VISIBLE = 3;
@@ -218,7 +218,7 @@ export default function Home() {
     <Layout transparentNav>
       {/* HERO */}
       <section style={{ position: 'relative', height: '100vh', minHeight: 640, overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: `url('${IMAGES.packagesMain}')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: `url('${IMAGES.homeHero}')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(150deg,rgba(58,42,30,0.75) 0%,rgba(58,42,30,0.45) 55%,rgba(58,42,30,0.15) 100%)' }} />
         <div className="container hero-content" style={{}}>
           <div className="hero-top">
@@ -270,7 +270,7 @@ export default function Home() {
         <div className="container" style={{ padding: 0 }}>
           <div className="grid-2">
             <div style={{ borderRadius: 24, overflow: 'hidden', aspectRatio: '4/5', position: 'relative' }}>
-              <img src={IMAGES.aboutUs} alt="Cool Surfers Morocco team" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src={IMAGES.homeAboutUs} alt="Cool Surfers Morocco team" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               <div style={{ position: 'absolute', bottom: 20, left: 20, background: 'rgba(58,42,30,0.9)', backdropFilter: 'blur(8px)', borderRadius: 14, padding: '16px 20px' }}>
                 <p style={{ fontFamily: 'var(--font-heading)', fontSize: 13, fontWeight: 600, color: 'var(--color-lime)', marginBottom: 4, letterSpacing: '0.04em' }}>
                   Founded in Tamraght
@@ -343,10 +343,10 @@ export default function Home() {
           </div>
           <div className="grid-3">
             <PackagePreviewCard
-              image={IMAGES.package4Day}
-              category="Weekend"
+              image={IMAGES.homePackageQuickGetaway}
+              category="4 Nights Stay"
               categoryColor="var(--color-husk)"
-              title="4 Days · 3 Nights"
+              title="Quick Getaway"
               price="€290"
               priceSub="per person, triple shared"
               features={['Airport transfers', '3 meals per day', 'Surf coaching + equipment']}
@@ -354,10 +354,10 @@ export default function Home() {
               ctaVariant="dark"
             />
             <PackagePreviewCard
-              image={IMAGES.package7Day}
+              image={IMAGES.homePackageFullSurf}
               category="Full Week"
               categoryColor="var(--color-lime)"
-              title="7 Days · 7 Nights"
+              title="Full Surf Experience"
               price="€460"
               priceSub="per person, triple shared"
               features={['Everything in 4-day', 'Grand Souk of Agadir visit', 'Full 7 afternoons free surf']}
@@ -369,7 +369,7 @@ export default function Home() {
               image={IMAGES.packageYoga}
               category="Body & Soul"
               categoryColor="var(--color-coral)"
-              title="Surf & Yoga Week"
+              title="Surf & Yoga Experience"
               price="€510"
               priceSub="per person, triple shared"
               features={['Full surf week', '5 yoga sessions included', 'Balance body & mind']}

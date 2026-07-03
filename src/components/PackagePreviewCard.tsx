@@ -63,7 +63,8 @@ export default function PackagePreviewCard({
           {category}
         </p>
         <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 700, color: titleColor, marginBottom: 4 }}>{title}</h3>
-        <p style={{ fontFamily: 'var(--font-display)', fontSize: 30, color: priceColor, margin: '8px 0 4px' }}>{price}</p>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: priceSubColor, marginTop: 8, marginBottom: 2 }}>From</p>
+        <p style={{ fontFamily: 'var(--font-display)', fontSize: 30, color: priceColor, margin: '0 0 4px' }}>{price}</p>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: priceSubColor, marginBottom: 20 }}>{priceSub}</p>
         <div style={{ marginBottom: 24 }}>
           <CheckList items={features} textColor={featureColor} fontSize={13} size={15} />
