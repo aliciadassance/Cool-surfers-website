@@ -5,6 +5,7 @@ import Button from '../components/Button';
 import Badge from '../components/Badge';
 import IconTile from '../components/IconTile';
 import PackagePreviewCard from '../components/PackagePreviewCard';
+import PackageCarousel from '../components/PackageCarousel';
 import TestimonialCard from '../components/TestimonialCard';
 import { IMAGES } from '../data/images';
 
@@ -103,6 +104,19 @@ function TestimonialsCarousel() {
   const [slideWidth, setSlideWidth] = useState(0);
   const maxIndex = TESTIMONIALS.length - VISIBLE;
 
+  const mobileTrackRef = useRef<HTMLDivElement>(null);
+  const [mobileIndex, setMobileIndex] = useState(0);
+
+  const handleMobileScroll = () => {
+    const el = mobileTrackRef.current;
+    if (!el) return;
+    const first = el.firstElementChild as HTMLElement | null;
+    if (!first) return;
+    const step = first.offsetWidth + GAP;
+    const i = Math.round(el.scrollLeft / step);
+    setMobileIndex(Math.min(TESTIMONIALS.length - 1, Math.max(0, i)));
+  };
+
   useEffect(() => {
     const measure = () => {
       if (containerRef.current) {
@@ -149,7 +163,7 @@ function TestimonialsCarousel() {
           </h2>
         </div>
 
-        <div style={{ position: 'relative', padding: '0 56px' }}>
+        <div className="hide-mobile" style={{ position: 'relative', padding: '0 56px' }}>
           <button onClick={prev} disabled={index === 0} style={{ ...arrowStyle(index === 0), left: 0 }} aria-label="Previous">
             <IconArrowRight size={16} stroke={2.5} style={{ transform: 'rotate(180deg)' }} color="var(--color-bark)" />
           </button>
@@ -174,7 +188,7 @@ function TestimonialsCarousel() {
           </button>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 40 }}>
+        <div className="hide-mobile" style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 40 }}>
           {Array.from({ length: maxIndex + 1 }).map((_, i) => (
             <button
               key={i}
@@ -189,13 +203,60 @@ function TestimonialsCarousel() {
             />
           ))}
         </div>
+
+        <div className="show-mobile" style={{ display: 'none', flexDirection: 'column' }}>
+          <div
+            ref={mobileTrackRef}
+            onScroll={handleMobileScroll}
+            className="pkg-carousel-track"
+            style={{
+              display: 'flex',
+              gap: GAP,
+              overflowX: 'auto',
+              scrollSnapType: 'x mandatory',
+            }}
+          >
+            {TESTIMONIALS.map((t) => (
+              <div key={t.name} style={{ flex: '0 0 85%', scrollSnapAlign: 'start' }}>
+                <TestimonialCard {...t} />
+              </div>
+            ))}
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 24 }}>
+            {TESTIMONIALS.map((_, i) => (
+              <span
+                key={i}
+                style={{
+                  width: i === mobileIndex ? 24 : 8, height: 8, borderRadius: 100,
+                  background: i === mobileIndex ? 'var(--color-bark)' : 'rgba(58,42,30,0.2)',
+                  display: 'block',
+                  transition: 'width 0.3s, background 0.3s',
+                }}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
+const MOSAIC_MOBILE_GAP = 12;
+
 export default function Home() {
   const mosaicRef = useRef<HTMLDivElement>(null);
+  const mosaicTrackRef = useRef<HTMLDivElement>(null);
+  const [mosaicIndex, setMosaicIndex] = useState(0);
+
+  const handleMosaicScroll = () => {
+    const el = mosaicTrackRef.current;
+    if (!el) return;
+    const first = el.firstElementChild as HTMLElement | null;
+    if (!first) return;
+    const step = first.offsetWidth + MOSAIC_MOBILE_GAP;
+    const i = Math.round(el.scrollLeft / step);
+    setMosaicIndex(Math.min(MOSAIC.length - 1, Math.max(0, i)));
+  };
 
   useEffect(() => {
     const grid = mosaicRef.current;
@@ -341,7 +402,7 @@ export default function Home() {
               <IconArrowRight size={14} stroke={2.5} />
             </a>
           </div>
-          <div className="grid-3">
+          <PackageCarousel>
             <PackagePreviewCard
               image={IMAGES.homePackageQuickGetaway}
               category="4 Nights Stay"
@@ -376,7 +437,7 @@ export default function Home() {
               ctaHref="/packages"
               ctaVariant="coral"
             />
-          </div>
+          </PackageCarousel>
         </div>
       </section>
 
@@ -396,7 +457,7 @@ export default function Home() {
               Meet the Cool Surfers team
             </Button>
           </div>
-          <div ref={mosaicRef} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridTemplateRows: '280px 280px', gap: 10, borderRadius: 20 }}>
+          <div ref={mosaicRef} className="hide-mobile" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridTemplateRows: '280px 280px', gap: 10, borderRadius: 20 }}>
             {MOSAIC.map((m) => (
               <div
                 key={m.alt}
@@ -407,6 +468,45 @@ export default function Home() {
                 <img src={m.src} alt={m.alt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             ))}
+          </div>
+
+          <div className="show-mobile" style={{ display: 'none', flexDirection: 'column' }}>
+            <div
+              ref={mosaicTrackRef}
+              onScroll={handleMosaicScroll}
+              className="pkg-carousel-track"
+              style={{
+                display: 'flex',
+                gap: MOSAIC_MOBILE_GAP,
+                overflowX: 'auto',
+                scrollSnapType: 'x mandatory',
+                borderRadius: 20,
+              }}
+            >
+              {MOSAIC.map((m) => (
+                <div
+                  key={m.alt}
+                  style={{ flex: '0 0 85%', scrollSnapAlign: 'start', aspectRatio: '4/5', borderRadius: 20, overflow: 'hidden' }}
+                >
+                  <img src={m.src} alt={m.alt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
+              ))}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 24 }}>
+              {MOSAIC.map((_, i) => (
+                <span
+                  key={i}
+                  style={{
+                    width: i === mosaicIndex ? 24 : 8,
+                    height: 8,
+                    borderRadius: 100,
+                    background: i === mosaicIndex ? 'var(--color-shell)' : 'rgba(251,246,236,0.25)',
+                    display: 'block',
+                    transition: 'width 0.3s, background 0.3s',
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>

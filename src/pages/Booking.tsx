@@ -160,11 +160,13 @@ export default function Booking() {
                       style={{ minHeight: 120 }}
                     />
                   </div>
-                  <div style={{ display: 'flex', gap: 12 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                     <button
-                      type="submit"
+                      type="button"
                       className="ui-btn"
-                      data-variant="primary"
+                      data-variant="secondary"
+                      disabled
+                      title="Coming soon"
                       style={{
                         background: 'var(--color-lime)',
                         color: 'var(--color-bark)',
@@ -177,18 +179,18 @@ export default function Booking() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         gap: 10,
-                        flex: 1,
+                        width: '100%',
+                        opacity: 0.5,
+                        cursor: 'not-allowed',
                       }}
                     >
-                      <IconBrandWhatsapp size={18} />
-                      Send Request on WhatsApp
+                      <IconMail size={18} />
+                      Send Request by Email
                     </button>
                     <button
-                      type="button"
+                      type="submit"
                       className="ui-btn"
-                      data-variant="secondary"
-                      disabled
-                      title="Coming soon"
+                      data-variant="primary"
                       style={{
                         background: 'var(--color-coconut)',
                         color: 'var(--color-bark)',
@@ -201,13 +203,11 @@ export default function Booking() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         gap: 10,
-                        flex: 1,
-                        opacity: 0.5,
-                        cursor: 'not-allowed',
+                        width: '100%',
                       }}
                     >
-                      <IconMail size={18} />
-                      Send Request by Email
+                      <IconBrandWhatsapp size={18} />
+                      Send Request on WhatsApp
                     </button>
                   </div>
                   <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--color-husk)', textAlign: 'center', lineHeight: 1.5 }}>

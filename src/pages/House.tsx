@@ -1,10 +1,13 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { IconCheck, IconMapPin, IconArrowRight, IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
 import Layout from '../components/Layout';
 import PageHero from '../components/PageHero';
 import Button from '../components/Button';
 import RoomCard from '../components/RoomCard';
+import PackageCarousel from '../components/PackageCarousel';
 import { IMAGES } from '../data/images';
+
+const SPOTS_GAP = 24;
 
 const AMENITIES = [
   { label: 'Fast WiFi', dark: false },
@@ -55,13 +58,24 @@ const SURF_SPOTS = [
 
 export default function House() {
   const spotsTrackRef = useRef<HTMLDivElement>(null);
+  const [spotsIndex, setSpotsIndex] = useState(0);
 
   const scrollSpots = (dir: 'left' | 'right') => {
     const el = spotsTrackRef.current;
     if (!el) return;
     const card = el.querySelector<HTMLElement>('[data-carousel-card]');
-    const step = (card?.offsetWidth ?? 320) + 24;
+    const step = (card?.offsetWidth ?? 320) + SPOTS_GAP;
     el.scrollBy({ left: dir === 'left' ? -step : step, behavior: 'smooth' });
+  };
+
+  const handleSpotsScroll = () => {
+    const el = spotsTrackRef.current;
+    if (!el) return;
+    const first = el.firstElementChild as HTMLElement | null;
+    if (!first) return;
+    const step = first.offsetWidth + SPOTS_GAP;
+    const i = Math.round(el.scrollLeft / step);
+    setSpotsIndex(Math.min(SURF_SPOTS.length - 1, Math.max(0, i)));
   };
 
   return (
@@ -95,11 +109,31 @@ export default function House() {
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'var(--color-bark)', opacity: 0.72, lineHeight: 1.8, marginBottom: 36 }}>
                 Clean linens, fast WiFi, daily housekeeping, and communal spaces designed for exactly the kind of conversations that happen when strangers become friends.
               </p>
+              <div className="show-mobile" style={{ display: 'none', flexWrap: 'wrap', gap: 10, marginBottom: 32 }}>
+                {AMENITIES.map((a) => (
+                  <div
+                    key={a.label}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      background: a.dark ? 'var(--color-bark)' : 'var(--color-coconut)',
+                      borderRadius: 100,
+                      padding: '10px 16px',
+                    }}
+                  >
+                    <span style={{ color: 'var(--color-lime)', display: 'flex' }}>
+                      {a.label === '2min Beach' ? <IconMapPin size={15} stroke={2} /> : <IconCheck size={15} stroke={2} />}
+                    </span>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 600, color: a.dark ? 'var(--color-shell)' : 'var(--color-bark)' }}>{a.label}</p>
+                  </div>
+                ))}
+              </div>
               <Button href="/packages" variant="primary" size="md" icon={<IconArrowRight size={15} stroke={2.5} />}>
                 See Packages
               </Button>
             </div>
-            <div className="grid-amenities">
+            <div className="grid-amenities hide-mobile">
               {AMENITIES.map((a) => (
                 <div key={a.label} style={{ background: a.dark ? 'var(--color-bark)' : 'var(--color-coconut)', borderRadius: 16, padding: 20, textAlign: 'center' }}>
                   <div style={{ marginBottom: 10, color: 'var(--color-lime)', display: 'flex', justifyContent: 'center' }}>
@@ -124,11 +158,11 @@ export default function House() {
               Three rooms, one great vibe.
             </h2>
           </div>
-          <div className="grid-3">
+          <PackageCarousel>
             {ROOMS.map((room) => (
               <RoomCard key={room.title} {...room} ctaHref="/packages" />
             ))}
-          </div>
+          </PackageCarousel>
         </div>
       </section>
 
@@ -151,10 +185,10 @@ export default function House() {
             </Button>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <button type="button" aria-label="Previous spot" className="carousel-arrow" onClick={() => scrollSpots('left')}>
+            <button type="button" aria-label="Previous spot" className="carousel-arrow hide-mobile" onClick={() => scrollSpots('left')}>
               <IconChevronLeft size={18} stroke={2} />
             </button>
-            <div className="carousel-track" ref={spotsTrackRef} style={{ flex: 1, minWidth: 0 }}>
+            <div className="carousel-track" ref={spotsTrackRef} onScroll={handleSpotsScroll} style={{ flex: 1, minWidth: 0 }}>
               {SURF_SPOTS.map((spot) => (
                 <div key={spot.name} className="carousel-card" data-carousel-card>
                   <div style={{ background: 'rgba(242,235,216,0.94)', border: '1px solid rgba(58,42,30,0.06)', borderRadius: 24, padding: 14, height: '100%', display: 'flex', flexDirection: 'column' }}>
@@ -173,9 +207,24 @@ export default function House() {
                 </div>
               ))}
             </div>
-            <button type="button" aria-label="Next spot" className="carousel-arrow" onClick={() => scrollSpots('right')}>
+            <button type="button" aria-label="Next spot" className="carousel-arrow hide-mobile" onClick={() => scrollSpots('right')}>
               <IconChevronRight size={18} stroke={2} />
             </button>
+          </div>
+          <div className="show-mobile" style={{ display: 'none', justifyContent: 'center', gap: 8, marginTop: 24 }}>
+            {SURF_SPOTS.map((_, i) => (
+              <span
+                key={i}
+                style={{
+                  width: i === spotsIndex ? 24 : 8,
+                  height: 8,
+                  borderRadius: 100,
+                  background: i === spotsIndex ? 'var(--color-shell)' : 'rgba(251,246,236,0.25)',
+                  display: 'block',
+                  transition: 'width 0.3s, background 0.3s',
+                }}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -185,7 +234,7 @@ export default function House() {
         <div className="container" style={{ padding: 0 }}>
           <div style={{ background: 'var(--color-bark)', borderRadius: 28, padding: '64px 48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 32 }}>
             <div>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px,4vw,52px)', color: 'var(--color-shell)', lineHeight: 1, marginBottom: 12 }}>
+              <h2 className="cta-title" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px,4vw,52px)', color: 'var(--color-shell)', marginBottom: 12 }}>
                 Ready to call it home?
               </h2>
               <p style={{ fontFamily: 'var(--font-heading)', fontSize: 17, color: 'rgba(251,246,236,0.65)', maxWidth: 420, lineHeight: 1.55 }}>

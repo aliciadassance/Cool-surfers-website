@@ -17,6 +17,7 @@ import PageHero from '../components/PageHero';
 import Button from '../components/Button';
 import IconTile from '../components/IconTile';
 import PackageDetailCard from '../components/PackageDetailCard';
+import PackageCarousel from '../components/PackageCarousel';
 import CheckList from '../components/CheckList';
 import ScheduleItem from '../components/ScheduleItem';
 import { IMAGES } from '../data/images';
@@ -108,7 +109,7 @@ export default function Packages() {
       {/* PACKAGE CARDS */}
       <section style={{ background: 'var(--color-shell)', padding: '40px 32px 104px' }}>
         <div className="container" style={{ padding: 0 }}>
-          <div className="grid-3">
+          <PackageCarousel>
             <PackageDetailCard
               image={IMAGES.package4Day}
               tagLabel="Weekend Getaway"
@@ -143,7 +144,7 @@ export default function Packages() {
               ctaHref="/booking"
               ctaVariant="coral"
             />
-          </div>
+          </PackageCarousel>
         </div>
       </section>
 
@@ -167,7 +168,7 @@ export default function Packages() {
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-coral)', marginBottom: 20 }}>
                 Add-ons, at extra cost
               </p>
-              <div className="grid-addons">
+              <div className="grid-addons hide-mobile">
                 {ADD_ONS.map((addOn) => {
                   const Icon = ADD_ON_ICONS[addOn.icon];
                   return (
@@ -177,6 +178,31 @@ export default function Packages() {
                       </div>
                       <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, color: 'var(--color-shell)', margin: 0, flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{addOn.label}</p>
                       <p style={{ fontFamily: 'var(--font-display)', fontSize: 16, color: 'var(--color-coral)', marginTop: 18 }}>
+                        €{addOn.price}<span style={{ fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 600, color: 'var(--color-shell)' }}> /pers</span>
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="show-mobile" style={{ display: 'none', flexDirection: 'column' }}>
+                {ADD_ONS.map((addOn, i) => {
+                  const Icon = ADD_ON_ICONS[addOn.icon];
+                  return (
+                    <div
+                      key={addOn.label}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 14,
+                        padding: '16px 4px',
+                        borderTop: i === 0 ? 'none' : '1px solid rgba(251,246,236,0.1)',
+                      }}
+                    >
+                      <div style={{ color: 'var(--color-coral)', display: 'flex', flexShrink: 0 }}>
+                        <Icon size={22} stroke={1.8} />
+                      </div>
+                      <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 600, color: 'var(--color-shell)', margin: 0, flex: 1 }}>{addOn.label}</p>
+                      <p style={{ fontFamily: 'var(--font-display)', fontSize: 16, color: 'var(--color-coral)', flexShrink: 0, whiteSpace: 'nowrap' }}>
                         €{addOn.price}<span style={{ fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 600, color: 'var(--color-shell)' }}> /pers</span>
                       </p>
                     </div>
@@ -212,32 +238,30 @@ export default function Packages() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* WHEN TO COME */}
-      <section style={{ background: 'var(--color-shell)', padding: '88px 32px' }}>
-        <div className="container" style={{ padding: 0 }}>
-          <div style={{ textAlign: 'center', marginBottom: 56 }}>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-husk)', marginBottom: 14 }}>
-              Plan Your Trip
-            </p>
-            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px,4vw,44px)', fontWeight: 700, color: 'var(--color-bark)' }}>When to come?</h2>
-          </div>
-          <div className="grid-4">
-            {SEASONS.map((s) => {
-              const Icon = SEASON_ICONS[s.icon];
-              return (
-                <div key={s.season} style={{ background: 'var(--color-coconut)', borderRadius: 20, padding: 28 }}>
-                  <IconTile size={44} background="var(--color-bark)" style={{ marginBottom: 18 }}>
-                    <Icon size={20} color="var(--color-lime)" stroke={1.8} />
-                  </IconTile>
-                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 700, color: 'var(--color-bark)', marginBottom: 2 }}>{s.season}</h3>
-                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, color: 'var(--color-husk)', marginBottom: 12 }}>{s.months}</p>
-                  <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(58,42,30,0.7)', lineHeight: 1.6 }}>{s.desc}</p>
-                </div>
-              );
-            })}
+          {/* WHEN TO COME */}
+          <div style={{ marginTop: 88 }}>
+            <div style={{ textAlign: 'center', marginBottom: 56 }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-husk)', marginBottom: 14 }}>
+                Plan Your Trip
+              </p>
+              <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px,4vw,44px)', fontWeight: 700, color: 'var(--color-bark)' }}>When to come?</h2>
+            </div>
+            <PackageCarousel gridClassName="grid-4">
+              {SEASONS.map((s) => {
+                const Icon = SEASON_ICONS[s.icon];
+                return (
+                  <div key={s.season} style={{ background: 'var(--color-coconut)', borderRadius: 20, padding: 28, height: '100%' }}>
+                    <IconTile size={44} background="var(--color-bark)" style={{ marginBottom: 18 }}>
+                      <Icon size={20} color="var(--color-lime)" stroke={1.8} />
+                    </IconTile>
+                    <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 700, color: 'var(--color-bark)', marginBottom: 2 }}>{s.season}</h3>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, color: 'var(--color-husk)', marginBottom: 12 }}>{s.months}</p>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(58,42,30,0.7)', lineHeight: 1.6 }}>{s.desc}</p>
+                  </div>
+                );
+              })}
+            </PackageCarousel>
           </div>
         </div>
       </section>

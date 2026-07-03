@@ -12,6 +12,7 @@ import Layout from '../components/Layout';
 import PageHero from '../components/PageHero';
 import IconTile from '../components/IconTile';
 import Button from '../components/Button';
+import PackageCarousel from '../components/PackageCarousel';
 import { IMAGES } from '../data/images';
 import { SITE, whatsappLink } from '../data/site';
 
@@ -72,9 +73,9 @@ export default function Contact() {
           <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: 'var(--color-bark)', lineHeight: 1.15, textAlign: 'center', marginBottom: 56 }}>
             Tell us what brings you here.
           </h2>
-          <div className="grid-4">
+          <PackageCarousel gridClassName="grid-4">
             {REASONS.map((reason) => (
-              <div key={reason.title} style={{ background: 'var(--color-coconut)', borderRadius: 24, padding: 28, display: 'flex', flexDirection: 'column' }}>
+              <div key={reason.title} style={{ background: 'var(--color-coconut)', borderRadius: 24, padding: 28, display: 'flex', flexDirection: 'column', height: '100%' }}>
                 <IconTile size={48} background="var(--color-bark)" style={{ marginBottom: 20 }}>
                   <reason.icon size={22} color="var(--color-lime)" stroke={1.8} />
                 </IconTile>
@@ -93,7 +94,7 @@ export default function Contact() {
                 </Button>
               </div>
             ))}
-          </div>
+          </PackageCarousel>
         </div>
       </section>
 
@@ -106,7 +107,60 @@ export default function Contact() {
           <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: 'var(--color-shell)', lineHeight: 1.15, textAlign: 'center', marginBottom: 56 }}>
             Every channel, one house.
           </h2>
-          <div className="grid-2col">
+          <div className="show-mobile" style={{ display: 'none', flexDirection: 'column', gap: 12 }}>
+            <a
+              href={`https://wa.me/${SITE.whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover-lift"
+              style={{ display: 'flex', alignItems: 'center', gap: 14, background: 'rgba(251,246,236,0.06)', border: '1px solid rgba(251,246,236,0.1)', borderRadius: 16, padding: '16px 18px' }}
+            >
+              <IconTile size={40} background="#25D366">
+                <IconBrandWhatsapp size={20} color="white" />
+              </IconTile>
+              <p style={{ fontFamily: 'var(--font-heading)', fontSize: 14, fontWeight: 700, color: 'var(--color-shell)' }}>{SITE.whatsappDisplay}</p>
+            </a>
+
+            <a
+              href={`mailto:${SITE.email}`}
+              className="hover-lift"
+              style={{ display: 'flex', alignItems: 'center', gap: 14, background: 'rgba(251,246,236,0.06)', border: '1px solid rgba(251,246,236,0.1)', borderRadius: 16, padding: '16px 18px' }}
+            >
+              <IconTile size={40} background="rgba(251,246,236,0.1)">
+                <IconMail size={18} color="var(--color-shell)" stroke={1.8} />
+              </IconTile>
+              <p style={{ fontFamily: 'var(--font-heading)', fontSize: 14, fontWeight: 700, color: 'var(--color-shell)', wordBreak: 'break-word' }}>{SITE.email}</p>
+            </a>
+
+            <a
+              href={SITE.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover-lift"
+              style={{ display: 'flex', alignItems: 'center', gap: 14, background: 'rgba(251,246,236,0.06)', border: '1px solid rgba(251,246,236,0.1)', borderRadius: 16, padding: '16px 18px' }}
+            >
+              <IconTile size={40} background="linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
+                <IconBrandInstagram size={18} color="white" stroke={1.8} />
+              </IconTile>
+              <p style={{ fontFamily: 'var(--font-heading)', fontSize: 14, fontWeight: 700, color: 'var(--color-shell)' }}>{SITE.instagramHandle}</p>
+            </a>
+
+            <a
+              href={SITE.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover-lift"
+              style={{ display: 'flex', alignItems: 'center', gap: 14, background: 'rgba(251,246,236,0.06)', border: '1px solid rgba(251,246,236,0.1)', borderRadius: 16, padding: '16px 18px' }}
+            >
+              <IconTile size={40} background="var(--color-coral)">
+                <IconMapPin size={18} color="white" stroke={1.8} />
+              </IconTile>
+              <p style={{ fontFamily: 'var(--font-heading)', fontSize: 14, fontWeight: 700, color: 'var(--color-shell)', lineHeight: 1.4 }}>
+                {SITE.address[0]}, {SITE.address[1]}
+              </p>
+            </a>
+          </div>
+          <div className="grid-2col hide-mobile">
             <a
               href={`https://wa.me/${SITE.whatsappNumber}`}
               target="_blank"

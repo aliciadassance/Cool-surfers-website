@@ -179,6 +179,23 @@ img {
   gap: 16px;
 }
 
+.cta-title {
+  line-height: 1;
+}
+@media (max-width: 640px) {
+  .cta-title {
+    line-height: 1.2;
+  }
+}
+
+.pkg-carousel-track {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.pkg-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
 @media (max-width: 960px) {
   .grid-2,
   .grid-booking {
