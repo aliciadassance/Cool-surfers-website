@@ -106,38 +106,38 @@ export default function Contact() {
           <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: 'var(--color-shell)', lineHeight: 1.15, textAlign: 'center', marginBottom: 56 }}>
             Every channel, one house.
           </h2>
-          <div className="grid-4">
+          <div className="grid-2col">
             <a
               href={`https://wa.me/${SITE.whatsappNumber}`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover-lift"
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 14, background: 'rgba(251,246,236,0.06)', border: '1px solid rgba(251,246,236,0.1)', borderRadius: 20, padding: 28 }}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 10, background: 'rgba(251,246,236,0.06)', border: '1px solid rgba(251,246,236,0.1)', borderRadius: 20, padding: '22px 16px' }}
             >
-              <IconTile size={52} background="#25D366">
-                <IconBrandWhatsapp size={26} color="white" />
+              <IconTile size={44} background="#25D366">
+                <IconBrandWhatsapp size={22} color="white" />
               </IconTile>
               <div>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(251,246,236,0.4)', marginBottom: 4 }}>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(251,246,236,0.4)', marginBottom: 4 }}>
                   WhatsApp
                 </p>
-                <p style={{ fontFamily: 'var(--font-heading)', fontSize: 16, fontWeight: 700, color: 'var(--color-shell)' }}>{SITE.whatsappDisplay}</p>
+                <p style={{ fontFamily: 'var(--font-heading)', fontSize: 13, fontWeight: 700, color: 'var(--color-shell)' }}>{SITE.whatsappDisplay}</p>
               </div>
             </a>
 
             <a
               href={`mailto:${SITE.email}`}
               className="hover-lift"
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 14, background: 'rgba(251,246,236,0.06)', border: '1px solid rgba(251,246,236,0.1)', borderRadius: 20, padding: 28 }}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 10, background: 'rgba(251,246,236,0.06)', border: '1px solid rgba(251,246,236,0.1)', borderRadius: 20, padding: '22px 16px' }}
             >
-              <IconTile size={52} background="rgba(251,246,236,0.1)">
-                <IconMail size={24} color="var(--color-shell)" stroke={1.8} />
+              <IconTile size={44} background="rgba(251,246,236,0.1)">
+                <IconMail size={20} color="var(--color-shell)" stroke={1.8} />
               </IconTile>
               <div>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(251,246,236,0.4)', marginBottom: 4 }}>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(251,246,236,0.4)', marginBottom: 4 }}>
                   Email
                 </p>
-                <p style={{ fontFamily: 'var(--font-heading)', fontSize: 16, fontWeight: 700, color: 'var(--color-shell)', wordBreak: 'break-word' }}>
+                <p style={{ fontFamily: 'var(--font-heading)', fontSize: 13, fontWeight: 700, color: 'var(--color-shell)', wordBreak: 'break-word' }}>
                   {SITE.email}
                 </p>
               </div>
@@ -148,16 +148,16 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               className="hover-lift"
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 14, background: 'rgba(251,246,236,0.06)', border: '1px solid rgba(251,246,236,0.1)', borderRadius: 20, padding: 28 }}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 10, background: 'rgba(251,246,236,0.06)', border: '1px solid rgba(251,246,236,0.1)', borderRadius: 20, padding: '22px 16px' }}
             >
-              <IconTile size={52} background="linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
-                <IconBrandInstagram size={24} color="white" stroke={1.8} />
+              <IconTile size={44} background="linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
+                <IconBrandInstagram size={20} color="white" stroke={1.8} />
               </IconTile>
               <div>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(251,246,236,0.4)', marginBottom: 4 }}>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(251,246,236,0.4)', marginBottom: 4 }}>
                   Instagram
                 </p>
-                <p style={{ fontFamily: 'var(--font-heading)', fontSize: 16, fontWeight: 700, color: 'var(--color-shell)' }}>{SITE.instagramHandle}</p>
+                <p style={{ fontFamily: 'var(--font-heading)', fontSize: 13, fontWeight: 700, color: 'var(--color-shell)' }}>{SITE.instagramHandle}</p>
               </div>
             </a>
 
@@ -166,16 +166,16 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               className="hover-lift"
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 14, background: 'rgba(251,246,236,0.06)', border: '1px solid rgba(251,246,236,0.1)', borderRadius: 20, padding: 28 }}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 10, background: 'rgba(251,246,236,0.06)', border: '1px solid rgba(251,246,236,0.1)', borderRadius: 20, padding: '22px 16px' }}
             >
-              <IconTile size={52} background="var(--color-coral)">
-                <IconMapPin size={24} color="white" stroke={1.8} />
+              <IconTile size={44} background="var(--color-coral)">
+                <IconMapPin size={20} color="white" stroke={1.8} />
               </IconTile>
               <div>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(251,246,236,0.4)', marginBottom: 4 }}>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(251,246,236,0.4)', marginBottom: 4 }}>
                   Address
                 </p>
-                <p style={{ fontFamily: 'var(--font-heading)', fontSize: 15, fontWeight: 700, color: 'var(--color-shell)', lineHeight: 1.4 }}>
+                <p style={{ fontFamily: 'var(--font-heading)', fontSize: 12, fontWeight: 700, color: 'var(--color-shell)', lineHeight: 1.4 }}>
                   {SITE.address[0]}
                   <br />
                   {SITE.address[1]}

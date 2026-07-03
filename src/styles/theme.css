@@ -119,6 +119,11 @@ img {
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
+.grid-2col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
 .carousel-track {
   display: flex;
   gap: 24px;
@@ -198,6 +203,9 @@ img {
   .grid-amenities,
   .grid-addons {
     grid-template-columns: 1fr;
+  }
+  .grid-2col {
+    gap: 12px;
   }
   .hide-mobile {
     display: none !important;
