@@ -103,13 +103,13 @@ export default function About() {
             </p>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px,4vw,52px)', color: 'var(--color-shell)', lineHeight: 1 }}>Meet the founders.</h2>
           </div>
-          <div className="grid-2" style={{ alignItems: 'start' }}>
+          <div className="grid-2" style={{ alignItems: 'stretch' }}>
             {TEAM.map((member) => (
-              <div key={member.name} style={{ background: 'rgba(251,246,236,0.05)', border: '1px solid rgba(251,246,236,0.1)', borderRadius: 28, overflow: 'hidden' }}>
-                <div style={{ height: 360, overflow: 'hidden' }}>
+              <div key={member.name} style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'rgba(251,246,236,0.05)', border: '1px solid rgba(251,246,236,0.1)', borderRadius: 28, overflow: 'hidden' }}>
+                <div style={{ height: 360, overflow: 'hidden', flexShrink: 0 }}>
                   <img src={member.image} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
                 </div>
-                <div style={{ padding: 32 }}>
+                <div style={{ padding: 32, flex: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
                     <div>
                       <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 26, fontWeight: 700, color: 'var(--color-shell)' }}>{member.name}</h3>

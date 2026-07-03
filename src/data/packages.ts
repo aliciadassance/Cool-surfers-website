@@ -22,11 +22,11 @@ export const PACKAGE_OPTIONS = [
 
 export const PACKAGE_INCLUDED = [
   'Airport or bus station transfers',
-  '3 meals/day + pre-dinner tea',
-  'Daily surf coaching or guiding',
-  'Board + wetsuit equipment',
-  'Shared or private accommodation',
-  'Access to the daily schedule & activities',
+  '3 meals a day, along with pre-dinner tea!',
+  'Morning surf Coaching or Guiding',
+  'Afternoon free surf or alternative activity (if waves are flat)',
+  'Surf equipment (board + wetsuit) included',
+  'A Visit to the Grand Souk of Agadir! (a very popular field trip)',
 ];
 
 export const ADD_ONS = [
