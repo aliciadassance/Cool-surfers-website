@@ -47,10 +47,12 @@ export const SEASONS = [
 
 export const DAILY_SCHEDULE = [
   { time: '08:30', title: 'Breakfast', desc: 'Fuel up together before the session', tone: 'light' as const },
-  { time: '10:00', title: 'Surf spot hunt', desc: 'Check conditions · find the best waves', tone: 'dark' as const },
+  { time: '10:00', title: 'Surf spot check', desc: 'Conditions + best waves of the day', tone: 'dark' as const },
   { time: '10:30', title: 'Morning surf session', desc: 'Coaching or guiding based on your level', tone: 'dark' as const },
   { time: '13:00', title: 'Lunch at the beach', desc: 'Fresh food with salty hair and sandy feet', tone: 'light' as const },
-  { time: '14:00', title: 'Free surf or adventure', desc: 'Explore at your own pace', tone: 'light' as const },
-  { time: '18:00', title: 'Aperitif on the terrace', desc: 'Music · stories · sunset · good vibes', tone: 'husk' as const },
-  { time: '20:00', title: 'Dinner & dessert', desc: 'Moroccan flavors served family style', tone: 'coral' as const },
+  { time: '14:00', title: 'Free surf session or adventure', desc: 'Explore at your own pace', tone: 'light' as const },
+  { time: '17:00', title: 'Chill on the terrace', desc: 'Optional yoga or hammam visit', tone: 'husk' as const },
+  { time: '18:00', title: 'Aperitif time', desc: 'Music · stories · sunset', tone: 'husk' as const },
+  { time: '20:00', title: 'Dinner', desc: 'Moroccan flavors, family style', tone: 'coral' as const },
+  { time: '21:30', title: 'Games', desc: 'Cards · board games', tone: 'coral' as const },
 ];

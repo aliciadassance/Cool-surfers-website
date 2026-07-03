@@ -14,7 +14,7 @@ const TEAM = [
     image: IMAGES.teamHamza,
     iconBg: 'var(--color-lime)',
     icon: <IconWaveSine size={22} color="var(--color-bark)" stroke={1.8} />,
-    bio: "Born and raised in Tamraght, Hamza has been reading these waves since he was a kid. His coaching style is patient, technical, and always fun. He has an extraordinary ability to find exactly the right wave for each person's level — and to make them laugh while doing it.",
+    bio: "From the Taghazout area, Hamza has a deep connection to the ocean and a calm, encouraging presence in the water. His coaching style is patient and technical, with a real gift for finding exactly the right wave for each surfer's level — and making them laugh while doing it.",
   },
   {
     name: 'Momo',
@@ -23,7 +23,7 @@ const TEAM = [
     image: IMAGES.teamMomo,
     iconBg: 'var(--color-coral)',
     icon: <IconFriends size={22} color="var(--color-shell)" stroke={1.8} />,
-    bio: 'If Hamza is in the water, Momo is the heart of the house. He makes sure every guest feels at home from the moment they arrive — organizing the schedule, cooking up Moroccan feasts, and making sure no one ever sits alone. The camp\'s soul lives in him.',
+    bio: 'With years of experience guiding surfers of all levels through camps along the coast, Momo brings a steady, relaxed energy that helps people progress without pressure. He makes sure every guest feels part of the family from day one — for him, surfing was always about more than technique: the moment, the vibe, and the people you share it with.',
   },
 ];
 
@@ -37,7 +37,7 @@ const VALUES = [
   },
   {
     title: 'Safety First, Always',
-    desc: 'Every session is supervised. Our coaches are trained in water safety and first aid. You focus on surfing — we handle the rest.',
+    desc: 'Every session is supervised by experienced local coaches who know these waters inside out. You focus on surfing — we handle the rest.',
     dark: true,
     iconBg: 'rgba(168,210,74,0.15)',
     icon: <IconShieldCheck size={26} color="var(--color-lime)" stroke={1.8} />,
@@ -58,7 +58,7 @@ export default function About() {
         image={IMAGES.aboutUs}
         eyebrow="Who We Are"
         title={<>The people behind<br />the good vibes.</>}
-        subtitle="Two local surfers, one shared dream. Meet the team that turns every stay into something you'll never forget."
+        subtitle="Two Tamraght surfers, one shared dream. Meet the local team behind every unforgettable stay."
         heightVh={68}
         minHeight={500}
         bgPosition="center 30%"
@@ -84,7 +84,7 @@ export default function About() {
                 They realized that sharing the ocean with people — watching a beginner stand up for the first time, seeing that pure, uncontrolled joy — was the most rewarding thing they'd ever done.
               </p>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'var(--color-bark)', opacity: 0.72, lineHeight: 1.8 }}>
-                Cool Surfers Morocco was born from that conviction: that everyone deserves to experience the magic of Morocco's waves, surrounded by warmth, good food, and genuine human connection.
+                After years working at surf camps along the Moroccan coast, Hamza and Momo built Cool Surfers Morocco as the second home they'd always dreamed of — warm, welcoming, and open to anyone chasing the magic of Morocco's waves.
               </p>
             </div>
             <div style={{ borderRadius: 24, overflow: 'hidden', aspectRatio: '4/5' }}>
@@ -169,14 +169,14 @@ export default function About() {
                 Tamraght — a village worth discovering.
               </h2>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'rgba(251,246,236,0.68)', lineHeight: 1.8, marginBottom: 20 }}>
-                Tamraght is a peaceful local surf village set on the edge of Taghazout Bay. Here you're within walking distance of coffee shops, incredible Moroccan restaurants, and some of the best surf spots in North Africa.
+                Tamraght is a peaceful, family-friendly surf village on the edge of Taghazout Bay — within walking distance of coffee shops, pharmacies, Moroccan restaurants, and some of the best surf spots in North Africa.
               </p>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'rgba(251,246,236,0.68)', lineHeight: 1.8, marginBottom: 36 }}>
                 It's the kind of place that slows you down in the best possible way. Golden light, ocean air, and a pace of life that reminds you what really matters.
               </p>
               <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
                 <StatBlock value="300+" label="sunny days/year" />
-                <StatBlock value="2 min" label="walk to the beach" />
+                <StatBlock value="10 min" label="walk to the beach" />
                 <StatBlock value="12°C+" label="ocean temp year-round" />
               </div>
             </div>

@@ -57,7 +57,7 @@ export default function Packages() {
         image={IMAGES.packagesMain}
         eyebrow="All-Inclusive Surf Packages"
         title="Find your perfect week."
-        subtitle="Everything taken care of — transfers, food, surf coaching, and a house full of good people."
+        subtitle="Everything taken care of — transfers, meals, surf coaching, and a house full of good people."
         heightVh={68}
         minHeight={500}
         bgPosition="center 35%"

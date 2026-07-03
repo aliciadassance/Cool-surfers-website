@@ -17,7 +17,7 @@ const AMENITIES = [
   { label: 'Board Storage', dark: false },
   { label: 'Common Lounge', dark: false },
   { label: 'Towels Incl.', dark: false },
-  { label: '2min Beach', dark: true },
+  { label: '10min Beach', dark: true },
 ];
 
 const ROOMS = [
@@ -25,14 +25,14 @@ const ROOMS = [
     image: IMAGES.roomTriple,
     tagLabel: '💰 Best Value',
     title: 'Triple Shared Room',
-    description: '3 beds in a shared room. Perfect for solo travelers looking to connect and for groups of friends traveling together.',
+    description: 'Three beds in a spacious shared room — our most budget-friendly option. Perfect for solo travelers looking to find their tribe, or groups of friends staying together.',
     features: ['Shared bathroom', 'Great for solo travelers', 'Fresh linen & towels'],
     dark: false,
   },
   {
     image: IMAGES.roomDouble,
     title: 'Double Shared Room',
-    description: "2 beds in a shared room. A bit more intimate. Great for two friends traveling together or couples who don't mind sharing.",
+    description: "Two beds in a shared room, with the bathroom shared between just two rooms for extra quiet. Great for two friends traveling together, or couples who don't mind sharing.",
     features: ['Shared bathroom', 'More intimate space', 'Fresh linen & towels'],
     dark: false,
   },
@@ -42,16 +42,16 @@ const ROOMS = [
     tagBg: 'var(--color-lime)',
     tagColor: 'var(--color-bark)',
     title: 'Private Room',
-    description: 'Your own space after long days in the ocean. Ideal for those who value privacy, or couples looking for a dedicated getaway.',
+    description: 'Your own space after long days in the ocean, with a private bathroom and a balcony to dry your wetsuit or watch the sunset over Tamraght. Ideal for couples or anyone who values privacy.',
     features: ['Private bathroom', 'Your own space', 'Perfect for couples'],
     dark: true,
   },
 ];
 
 const SURF_SPOTS = [
-  { image: IMAGES.spotBananaPoint, name: 'Banana Point 🍌', tag: 'Our home break · All levels', description: 'A long, forgiving right-hander right in front of the house. Where you\'ll spend most mornings.' },
-  { image: IMAGES.spotCrocroBeach, name: 'Crocro Beach 🐊', tag: 'Mellow beach break · Beginners', description: 'Soft, rolling whitewash and a wide sandy beach. The go-to spot for first-timers finding their feet.' },
-  { image: IMAGES.spotDevilsRock, name: "Devil's Rock 😈", tag: 'Powerful reef break · Advanced', description: 'A punchy reef break for experienced surfers chasing steeper, faster walls of water.' },
+  { image: IMAGES.spotBananaPoint, name: 'Banana Point 🍌', tag: 'Our home break · All levels', description: 'A long, forgiving right-hander with a friendly local crowd — great for longboarders. Where you\'ll spend most mornings, right in front of the house.' },
+  { image: IMAGES.spotCrocroBeach, name: 'Crocro Beach 🐊', tag: 'Mellow beach break · All levels', description: 'Soft, rolling whitewash on a wide sandy beach with stunning Atlantic views — the go-to spot for first-timers finding their feet, and usually less crowded too.' },
+  { image: IMAGES.spotDevilsRock, name: "Devil's Rock 😈", tag: 'Powerful reef break · Advanced', description: 'Famous for consistent, powerful waves in a picturesque setting — a favorite with experienced surfers chasing steeper, faster walls of water.' },
   { image: IMAGES.fallSurf, name: 'Anza 🎣', tag: 'Long right point · Intermediate', description: 'A classic point break with long, workable rides. Just a short drive south of Tamraght.' },
   { image: IMAGES.placePanoramaPoint, name: 'Panorama Point 🔭', tag: 'Exposed reef · All levels', description: 'A punchy, scenic setup with something for everyone, depending on the swell.' },
 ];
@@ -84,7 +84,7 @@ export default function House() {
         image={IMAGES.surfHouseMain}
         eyebrow="Your Home in Morocco"
         title={<>Sun-drenched.<br />Welcoming.</>}
-        subtitle="More than a place to sleep — a place to feel at home, two minutes from the ocean."
+        subtitle="More than a place to sleep — a place to feel at home, ten minutes from the ocean."
         heightVh={68}
         minHeight={500}
         bgPosition="center 40%"
@@ -104,10 +104,10 @@ export default function House() {
                 Everything you need. Nothing you don't.
               </h2>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'var(--color-bark)', opacity: 0.72, lineHeight: 1.8, marginBottom: 20 }}>
-                Our surf house sits in the heart of Tamraght — a two-minute walk from the beach, a five-minute walk from some of Morocco's best surf spots. You'll wake up to the sound of the ocean and go to sleep under the stars on the terrace.
+                Our surf house sits in the heart of Tamraght — a ten-minute walk from the beach, a five-minute walk from some of Morocco's best surf spots. You'll wake up to the sound of the ocean and go to sleep under the stars on the terrace.
               </p>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'var(--color-bark)', opacity: 0.72, lineHeight: 1.8, marginBottom: 36 }}>
-                Clean linens, fast WiFi, daily housekeeping, and communal spaces designed for exactly the kind of conversations that happen when strangers become friends.
+                Clean linens and towels, fast WiFi, daily housekeeping, and communal spaces designed for exactly the kind of conversations that happen when strangers become friends.
               </p>
               <div className="show-mobile" style={{ display: 'none', flexWrap: 'wrap', gap: 10, marginBottom: 32 }}>
                 {AMENITIES.map((a) => (
@@ -123,7 +123,7 @@ export default function House() {
                     }}
                   >
                     <span style={{ color: 'var(--color-lime)', display: 'flex' }}>
-                      {a.label === '2min Beach' ? <IconMapPin size={15} stroke={2} /> : <IconCheck size={15} stroke={2} />}
+                      {a.label === '10min Beach' ? <IconMapPin size={15} stroke={2} /> : <IconCheck size={15} stroke={2} />}
                     </span>
                     <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 600, color: a.dark ? 'var(--color-shell)' : 'var(--color-bark)' }}>{a.label}</p>
                   </div>
@@ -137,7 +137,7 @@ export default function House() {
               {AMENITIES.map((a) => (
                 <div key={a.label} style={{ background: a.dark ? 'var(--color-bark)' : 'var(--color-coconut)', borderRadius: 16, padding: 20, textAlign: 'center' }}>
                   <div style={{ marginBottom: 10, color: 'var(--color-lime)', display: 'flex', justifyContent: 'center' }}>
-                    {a.label === '2min Beach' ? <IconMapPin size={24} stroke={1.8} /> : <IconCheck size={24} stroke={1.8} />}
+                    {a.label === '10min Beach' ? <IconMapPin size={24} stroke={1.8} /> : <IconCheck size={24} stroke={1.8} />}
                   </div>
                   <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, color: a.dark ? 'var(--color-shell)' : 'var(--color-bark)' }}>{a.label}</p>
                 </div>

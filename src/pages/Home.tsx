@@ -88,11 +88,11 @@ const TESTIMONIALS = [
 ];
 
 const MOSAIC = [
-  { src: IMAGES.homeMosaic1, alt: 'Banana Point', col: 1, row: '1 / 3', dir: 'left',  delay: 0 },
-  { src: IMAGES.homeMosaic2, alt: 'Team Hamza',   col: 2, row: '1',     dir: 'up',    delay: 0.1 },
-  { src: IMAGES.homeMosaic3, alt: 'Private room', col: 3, row: '1',     dir: 'right', delay: 0.15 },
-  { src: IMAGES.homeMosaic4, alt: 'Fall surf',    col: 2, row: '2',     dir: 'up',    delay: 0.2 },
-  { src: IMAGES.homeMosaic5, alt: 'Crocro Beach', col: 3, row: '2',     dir: 'right', delay: 0.25 },
+  { src: IMAGES.homeMosaic1, alt: 'Banana Point surf break, Tamraght', col: 1, row: '1 / 3', dir: 'left',  delay: 0 },
+  { src: IMAGES.homeMosaic2, alt: 'Hamza, surf coach at Cool Surfers Morocco',   col: 2, row: '1',     dir: 'up',    delay: 0.1 },
+  { src: IMAGES.homeMosaic3, alt: 'Private room at the Cool Surfers Morocco surf house', col: 3, row: '1',     dir: 'right', delay: 0.15 },
+  { src: IMAGES.homeMosaic4, alt: 'Autumn surf session near Tamraght',    col: 2, row: '2',     dir: 'up',    delay: 0.2 },
+  { src: IMAGES.homeMosaic5, alt: 'Crocro Beach surf spot, Taghazout Bay', col: 3, row: '2',     dir: 'right', delay: 0.25 },
 ];
 
 const VISIBLE = 3;
@@ -293,7 +293,7 @@ export default function Home() {
               Come for the waves.<br />Stay for the crew.
             </h1>
             <p className="hero-subtitle" style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(13px,1.3vw,16px)', color: 'rgba(251,246,236,0.82)', marginBottom: 36, lineHeight: 1.6 }}>
-              All-inclusive surf camp in Morocco. Daily coaching, great food, and people you'll never forget.<br />Starting from €290.
+              All-inclusive surf camp in Tamraght, Taghazout Bay. Daily surf coaching, home-cooked Moroccan meals, and people you'll never forget.<br />From €290.
             </p>
           </div>
           <div className="hero-bottom">
@@ -331,7 +331,7 @@ export default function Home() {
         <div className="container" style={{ padding: 0 }}>
           <div className="grid-2">
             <div style={{ borderRadius: 24, overflow: 'hidden', aspectRatio: '4/5', position: 'relative' }}>
-              <img src={IMAGES.homeAboutUs} alt="Cool Surfers Morocco team" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src={IMAGES.homeAboutUs} alt="Cool Surfers Morocco surf camp team in Tamraght, Morocco" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               <div style={{ position: 'absolute', bottom: 20, left: 20, background: 'rgba(58,42,30,0.9)', backdropFilter: 'blur(8px)', borderRadius: 14, padding: '16px 20px' }}>
                 <p style={{ fontFamily: 'var(--font-heading)', fontSize: 13, fontWeight: 600, color: 'var(--color-lime)', marginBottom: 4, letterSpacing: '0.04em' }}>
                   Founded in Tamraght
@@ -347,10 +347,10 @@ export default function Home() {
                 More than a surf camp. It's a family.
               </h2>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'var(--color-bark)', opacity: 0.7, lineHeight: 1.75, marginBottom: 20 }}>
-                A few years ago, Hamza and Momo fell in love with sharing the ocean with people. They had been surfing Tamraght's waves since childhood — and teaching felt like the most natural next step.
+                A few years ago, Hamza and Momo fell in love with sharing the ocean with people. They'd been surfing Tamraght's 20km stretch of coastline since childhood — teaching felt like the natural next step.
               </p>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'var(--color-bark)', opacity: 0.7, lineHeight: 1.75, marginBottom: 36 }}>
-                Cool Surfers Morocco isn't just a business. It's a place where strangers become friends, where every meal is shared and every wave is celebrated. The kind of place you come back to.
+                Cool Surfers Morocco isn't just a surf camp — it's a family. Every meal is shared, every wave is celebrated, and every guest leaves with people they'll stay in touch with.
               </p>
               <Button href="/about" variant="dark" size="md" icon={<IconArrowRight size={15} stroke={2.5} />}>
                 Meet the Team
