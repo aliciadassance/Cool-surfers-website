@@ -82,7 +82,7 @@ export default function Footer() {
         </div>
         <div style={{ borderTop: '1px solid rgba(251,246,236,0.08)', paddingTop: 28, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
           <p style={{ color: 'rgba(251,246,236,0.25)', fontFamily: 'var(--font-body)', fontSize: 12 }}>
-            © 2026 Cool Surfers Morocco. All rights reserved.
+            Design &amp; Development by Alicia Dassance · © 2026 Cool Surfers Morocco. All rights reserved.
           </p>
           <p style={{ color: 'rgba(251,246,236,0.25)', fontFamily: 'var(--font-body)', fontSize: 12 }}>Made with 🤙 in Tamraght</p>
         </div>
