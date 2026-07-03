@@ -164,7 +164,7 @@ export default function Packages() {
               <CheckList items={PACKAGE_INCLUDED} textColor="rgba(251,246,236,0.85)" fontSize={15} size={18} gap={16} />
             </div>
             <div style={{ background: 'rgba(251,246,236,0.06)', borderRadius: 24, border: '1px solid rgba(251,246,236,0.1)', padding: 36 }}>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-lime)', marginBottom: 20 }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-coral)', marginBottom: 20 }}>
                 Add-ons, at extra cost
               </p>
               <div className="grid-addons">
@@ -172,15 +172,44 @@ export default function Packages() {
                   const Icon = ADD_ON_ICONS[addOn.icon];
                   return (
                     <div key={addOn.label} style={{ background: 'rgba(242,235,216,0.14)', borderRadius: 16, padding: 20, textAlign: 'center', display: 'flex', flexDirection: 'column', height: '100%' }}>
-                      <div style={{ marginBottom: 10, color: 'var(--color-lime)', display: 'flex', justifyContent: 'center' }}>
+                      <div style={{ marginBottom: 10, color: 'var(--color-coral)', display: 'flex', justifyContent: 'center' }}>
                         <Icon size={24} stroke={1.8} />
                       </div>
                       <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, color: 'var(--color-shell)', margin: 0, flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{addOn.label}</p>
-                      <p style={{ fontFamily: 'var(--font-display)', fontSize: 16, color: 'var(--color-lime)', marginTop: 18 }}>€{addOn.price}</p>
+                      <p style={{ fontFamily: 'var(--font-display)', fontSize: 16, color: 'var(--color-coral)', marginTop: 18 }}>
+                        €{addOn.price}<span style={{ fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 600, color: 'var(--color-shell)' }}> /pers</span>
+                      </p>
                     </div>
                   );
                 })}
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* DAILY SCHEDULE */}
+      <section style={{ background: 'var(--color-shell)', padding: '88px 32px' }}>
+        <div className="container" style={{ padding: 0 }}>
+          <div className="grid-2">
+            <div>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-husk)', marginBottom: 14 }}>
+                A Typical Day
+              </p>
+              <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(30px,4vw,46px)', fontWeight: 700, color: 'var(--color-bark)', lineHeight: 1.1, marginBottom: 24 }}>
+                Sun, surf, eat, repeat.
+              </h2>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'var(--color-bark)', opacity: 0.7, lineHeight: 1.75, marginBottom: 32 }}>
+                Life at Cool Surfers follows the rhythm of the sun and the tides. Every day is a unique adventure — but here's what a great day looks like.
+              </p>
+              <Button href="/booking" variant="primary" size="md">
+                Book a Spot →
+              </Button>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              {DAILY_SCHEDULE.map((item) => (
+                <ScheduleItem key={item.time} {...item} />
+              ))}
             </div>
           </div>
         </div>
@@ -213,33 +242,6 @@ export default function Packages() {
         </div>
       </section>
 
-      {/* DAILY SCHEDULE */}
-      <section style={{ background: 'var(--color-shell)', padding: '88px 32px' }}>
-        <div className="container" style={{ padding: 0 }}>
-          <div className="grid-2">
-            <div>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-husk)', marginBottom: 14 }}>
-                A Typical Day
-              </p>
-              <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(30px,4vw,46px)', fontWeight: 700, color: 'var(--color-bark)', lineHeight: 1.1, marginBottom: 24 }}>
-                Sun, surf, eat, repeat.
-              </h2>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'var(--color-bark)', opacity: 0.7, lineHeight: 1.75, marginBottom: 32 }}>
-                Life at Cool Surfers follows the rhythm of the sun and the tides. Every day is a unique adventure — but here's what a great day looks like.
-              </p>
-              <Button href="/booking" variant="primary" size="md">
-                Book a Spot →
-              </Button>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-              {DAILY_SCHEDULE.map((item) => (
-                <ScheduleItem key={item.time} {...item} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* BOOKING CTA BANNER */}
       <section style={{ background: 'var(--color-lime)', padding: '80px 32px', textAlign: 'center' }}>
         <div style={{ maxWidth: 680, margin: '0 auto' }}>
@@ -251,14 +253,14 @@ export default function Packages() {
             <Button
               href={whatsappLink("Hi! I'd like to book at Cool Surfers Morocco!")}
               external
-              variant="dark"
+              variant="outline-dark"
               size="lg"
               icon={<IconBrandWhatsapp size={18} />}
               iconPosition="left"
             >
               WhatsApp Us
             </Button>
-            <Button href="/booking" variant="outline-dark" size="lg">
+            <Button href="/booking" variant="dark" size="lg">
               Booking Form →
             </Button>
           </div>

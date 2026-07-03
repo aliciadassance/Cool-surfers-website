@@ -25,8 +25,8 @@ export default function RoomCard({ image, tagLabel, tagBg = 'var(--color-husk)',
       <div className="img-hover-zoom" style={{ height: 240, overflow: 'hidden', position: 'relative' }}>
         <img src={image} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         {tagLabel && (
-          <div style={{ position: 'absolute', bottom: 16, left: 16, background: tagBg, borderRadius: 100, padding: '5px 14px' }}>
-            <span style={{ fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: tagColor }}>{tagLabel}</span>
+          <div style={{ position: 'absolute', bottom: 16, left: 16, background: tagBg, borderRadius: 100, padding: '5px 14px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+            <span style={{ fontFamily: 'var(--font-body)', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: tagColor, textAlign: 'center', lineHeight: 1 }}>{tagLabel}</span>
           </div>
         )}
       </div>

@@ -4,7 +4,7 @@ import { SITE } from '../data/site';
 const EXPLORE_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'About Us', to: '/about' },
-  { label: 'The House', to: '/house' },
+  { label: 'The Place', to: '/place' },
   { label: 'Packages & Pricing', to: '/packages' },
 ];
 
@@ -15,9 +15,9 @@ export default function Footer() {
         <div className="grid-4" style={{ marginBottom: 64 }}>
           <div>
             <img
-              src="/images/csm-logo.png"
+              src="/images/csm-logo-footer.png"
               alt="Cool Surfers Morocco"
-              style={{ height: 56, width: 'auto', marginBottom: 20, filter: 'brightness(0) invert(1)' }}
+              style={{ height: 140, width: 'auto', marginBottom: 20 }}
             />
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'rgba(251,246,236,0.5)', lineHeight: 1.7 }}>
               No stress, no shoes, just good vibes. Tamraght, Morocco.

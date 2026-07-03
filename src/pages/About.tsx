@@ -88,7 +88,7 @@ export default function About() {
               </p>
             </div>
             <div style={{ borderRadius: 24, overflow: 'hidden', aspectRatio: '4/5' }}>
-              <img src={IMAGES.spotBananaPoint} alt="Banana Point surf spot" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src={IMAGES.aboutOriginStory} alt="Hamza and Momo's story" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
           </div>
         </div>
@@ -159,7 +159,7 @@ export default function About() {
         <div className="container" style={{ padding: 0 }}>
           <div className="grid-2">
             <div style={{ borderRadius: 24, overflow: 'hidden', aspectRatio: '1/1' }}>
-              <img src={IMAGES.tamraghtMain} alt="Tamraght village" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src={IMAGES.aboutTamraght} alt="Tamraght village" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-lime)', marginBottom: 16 }}>

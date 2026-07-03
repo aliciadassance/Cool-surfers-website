@@ -52,7 +52,7 @@ export default function Contact() {
   return (
     <Layout>
       <PageHero
-        image={IMAGES.tamraghtMain}
+        image={IMAGES.contactHero}
         eyebrow="We're Here to Help"
         title={<>However you want<br />to reach us.</>}
         subtitle="Booking a trip, asking a question, planning a collaboration, or organizing a retreat — pick what fits and we'll take it from there."

@@ -67,7 +67,7 @@ export default function Booking() {
   return (
     <Layout>
       <PageHero
-        image={IMAGES.tamraghtMain}
+        image={IMAGES.bookingHero}
         eyebrow="Get in Touch"
         title={<>Let's plan your<br />perfect week.</>}
         subtitle="Tell us when you want to come, how many you are, and we'll take care of the rest. We usually reply within 24 hours."

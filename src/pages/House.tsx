@@ -20,7 +20,7 @@ const AMENITIES = [
 const ROOMS = [
   {
     image: IMAGES.roomTriple,
-    tagLabel: 'Best Value',
+    tagLabel: '💰 Best Value',
     title: 'Triple Shared Room',
     description: '3 beds in a shared room. Perfect for solo travelers looking to connect and for groups of friends traveling together.',
     features: ['Shared bathroom', 'Great for solo travelers', 'Fresh linen & towels'],
@@ -35,7 +35,7 @@ const ROOMS = [
   },
   {
     image: IMAGES.roomPrivate,
-    tagLabel: 'Most Private',
+    tagLabel: '🔒 Most Private',
     tagBg: 'var(--color-lime)',
     tagColor: 'var(--color-bark)',
     title: 'Private Room',
@@ -47,10 +47,10 @@ const ROOMS = [
 
 const SURF_SPOTS = [
   { image: IMAGES.spotBananaPoint, name: 'Banana Point 🍌', tag: 'Our home break · All levels', description: 'A long, forgiving right-hander right in front of the house. Where you\'ll spend most mornings.' },
-  { image: IMAGES.spotCrocroBeach, name: 'Crocro Beach', tag: 'Mellow beach break · Beginners', description: 'Soft, rolling whitewash and a wide sandy beach. The go-to spot for first-timers finding their feet.' },
-  { image: IMAGES.spotDevilsRock, name: "Devil's Rock", tag: 'Powerful reef break · Advanced', description: 'A punchy reef break for experienced surfers chasing steeper, faster walls of water.' },
-  { image: IMAGES.fallSurf, name: 'Anza', tag: 'Long right point · Intermediate', description: 'A classic point break with long, workable rides. Just a short drive south of Tamraght.' },
-  { image: IMAGES.tamraghtMain, name: 'Panorama Point', tag: 'Exposed reef · All levels', description: 'A punchy, scenic setup with something for everyone, depending on the swell.' },
+  { image: IMAGES.spotCrocroBeach, name: 'Crocro Beach 🐊', tag: 'Mellow beach break · Beginners', description: 'Soft, rolling whitewash and a wide sandy beach. The go-to spot for first-timers finding their feet.' },
+  { image: IMAGES.spotDevilsRock, name: "Devil's Rock 😈", tag: 'Powerful reef break · Advanced', description: 'A punchy reef break for experienced surfers chasing steeper, faster walls of water.' },
+  { image: IMAGES.fallSurf, name: 'Anza 🎣', tag: 'Long right point · Intermediate', description: 'A classic point break with long, workable rides. Just a short drive south of Tamraght.' },
+  { image: IMAGES.placePanoramaPoint, name: 'Panorama Point 🔭', tag: 'Exposed reef · All levels', description: 'A punchy, scenic setup with something for everyone, depending on the swell.' },
 ];
 
 export default function House() {
@@ -84,7 +84,7 @@ export default function House() {
           <div className="grid-2">
             <div>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-husk)', marginBottom: 16 }}>
-                The House
+                The Place
               </p>
               <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 700, color: 'var(--color-bark)', lineHeight: 1.15, marginBottom: 24 }}>
                 Everything you need. Nothing you don't.
