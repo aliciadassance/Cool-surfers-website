@@ -62,6 +62,12 @@ export default function Booking() {
       .join('\n');
     window.open(whatsappLink(lines), '_blank');
     setSubmitted(true);
+
+    fetch('/api/booking', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    }).catch((err) => console.error('Failed to send booking email:', err));
   };
 
   return (
