@@ -33,56 +33,50 @@ const PILLARS = [
 const TESTIMONIALS = [
   {
     quote:
-      "Came for the surf, stayed for the people. Hamza and the whole team made us feel like family from day one. The daily rhythm of surf, eat, relax is absolutely perfect. Already planning my return trip.",
-    name: 'Sarah M.',
-    location: 'France 🇫🇷',
+      "An absolutely incredible time! I learned so much in such a short time and made great progress. Hamza, Mo, and Mehdi are outstanding surf instructors. I highly recommend this place, especially for intermediate and advanced surfers. The vibe is warm, welcoming, and full of good energy aaaaand the food is unforgettable good! Thank you so much for everything! I'll definitely be back :)",
+    name: 'Julia C.',
     avatarBg: 'var(--color-lime)',
-    avatarInitial: 'S',
+    avatarInitial: 'J',
     avatarTextColor: 'var(--color-bark)',
   },
   {
     quote:
-      "I arrived solo with zero expectations and left with 15 new friends and major surf progression. No gimmicks — just genuine hospitality and great waves. One of the best decisions I've ever made.",
-    name: 'Marco V.',
-    location: 'Italy 🇮🇹',
+      "I had an absolutely great time with Coolsurfers Morocco! Hamza, Mehdi and Sif are not only great instructors, but most importantly great people and friends! The hotel is clean and very nice, every day they bring you to the best surf spots to have fun together and the dinners is always amazing! Super recommended and 5/5 ⭐️",
+    name: 'Davide N.',
     avatarBg: 'var(--color-coral)',
-    avatarInitial: 'M',
+    avatarInitial: 'D',
     avatarTextColor: 'var(--color-shell)',
   },
   {
     quote:
-      "As a total beginner I was nervous. By day 3 I was standing and surfing! The coaches are so patient. And the food? Three meals of incredible Moroccan cooking every day. I didn't want to leave.",
-    name: 'Emma R.',
-    location: 'United Kingdom 🇬🇧',
+      "Hamza, Momo and Mehdi are the best!! I had a great time staying with them at Cool Surfers. So much positive energy, good surf, delicious meals, lots of Rummi games - they're always there to help with anything. Can't wait to go back in 2026, thank you guys for everything. 💖",
+    name: 'Florina',
     avatarBg: 'var(--color-husk)',
-    avatarInitial: 'E',
+    avatarInitial: 'F',
     avatarTextColor: 'var(--color-shell)',
   },
   {
     quote:
-      "The surf & yoga combo week was exactly what I needed. Mornings in the water, afternoons on the mat, and evenings around the table with great people. I came back home completely recharged.",
-    name: 'Léa D.',
-    location: 'Belgium 🇧🇪',
+      "There is a reason these guys have a lot of 5 stars reviews. Hamza and Mehdi are quality instructors. Best hostel i have stayed in, brand new, lovely and clean. I stayed in a private double. The chef was also fabulous.",
+    name: 'NC.',
     avatarBg: 'var(--color-bark)',
-    avatarInitial: 'L',
+    avatarInitial: 'N',
     avatarTextColor: 'var(--color-shell)',
   },
   {
     quote:
-      "Five stars isn't enough. The location is stunning, the coaches genuinely care about your progression, and the whole vibe is so relaxed and welcoming. Tamraght is a magic place — go.",
-    name: 'Tom K.',
-    location: 'Germany 🇩🇪',
+      "Really gratefull to Cool Surfers Morocco for the week I spent at their house. You feel right at home from the very first minutes! It's the perfect place to learn or improve your surfing skills! Thanks for all!",
+    name: 'Elisa M.',
     avatarBg: 'var(--color-lime)',
-    avatarInitial: 'T',
+    avatarInitial: 'E',
     avatarTextColor: 'var(--color-bark)',
   },
   {
     quote:
-      "I've done surf camps before but nothing like this. The team treats you like a guest at their home, not a customer. The food, the waves, the sunsets — I still think about it every day.",
-    name: 'Camille B.',
-    location: 'Switzerland 🇨🇭',
+      "Our stay with cool surfers was amazing! We really loved it. The coaches are great, we've made pretty good progress. I would definitely recommend cool surfers to everyone who wants to have an unforgettable experience at Tamraght. Thanks to Momo and Hamza! Sending love from Germany!",
+    name: 'Nele N.',
     avatarBg: 'var(--color-coral)',
-    avatarInitial: 'C',
+    avatarInitial: 'N',
     avatarTextColor: 'var(--color-shell)',
   },
 ];
@@ -247,6 +241,17 @@ export default function Home() {
   const mosaicRef = useRef<HTMLDivElement>(null);
   const mosaicTrackRef = useRef<HTMLDivElement>(null);
   const [mosaicIndex, setMosaicIndex] = useState(0);
+  const heroLineRef = useRef<HTMLSpanElement>(null);
+  const [heroSubtitleWidth, setHeroSubtitleWidth] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    const el = heroLineRef.current;
+    if (!el) return;
+    const update = () => setHeroSubtitleWidth(el.offsetWidth);
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
 
   const handleMosaicScroll = () => {
     const el = mosaicTrackRef.current;
@@ -290,10 +295,10 @@ export default function Home() {
               </span>
             </div>
             <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,5vw,68px)', color: 'var(--color-shell)', lineHeight: 1.13, letterSpacing: '-0.02em', marginBottom: 22 }}>
-              Come for the waves.<br />Stay for the crew.
+              Come for the waves.<br /><span ref={heroLineRef}>Stay for the crew.</span>
             </h1>
-            <p className="hero-subtitle" style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(13px,1.3vw,16px)', color: 'rgba(251,246,236,0.82)', marginBottom: 36, lineHeight: 1.6 }}>
-              All-inclusive surf camp in Tamraght, Taghazout Bay. Daily surf coaching, home-cooked Moroccan meals, and people you'll never forget.<br />From €290.
+            <p className="hero-subtitle" style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(13px,1.3vw,16px)', color: 'rgba(251,246,236,0.82)', marginBottom: 36, lineHeight: 1.6, maxWidth: heroSubtitleWidth }}>
+              All-inclusive surf camp in Tamraght, Taghazout Bay. Daily surf coaching, home-cooked Moroccan meals, and people you'll never forget. From €290.
             </p>
           </div>
           <div className="hero-bottom">
@@ -410,7 +415,7 @@ export default function Home() {
               title="Quick Getaway"
               price="€290"
               priceSub="per person, triple shared"
-              features={['Airport transfers', '3 meals per day', 'Surf coaching + equipment']}
+              features={['Airport Transfers', '3 meals a day', 'Surf coaching + equipment']}
               ctaHref="/packages"
               ctaVariant="dark"
             />
@@ -421,7 +426,7 @@ export default function Home() {
               title="Full Surf Experience"
               price="€460"
               priceSub="per person, triple shared"
-              features={['Everything in 4-day', 'Grand Souk of Agadir visit', 'Full 7 afternoons free surf']}
+              features={['Airport Transfers', 'Everything in 4 days but in 7 days', 'Grand Souk of Agadir visit']}
               ctaHref="/packages"
               ctaVariant="primary"
               highlighted
@@ -433,7 +438,7 @@ export default function Home() {
               title="Surf & Yoga Experience"
               price="€510"
               priceSub="per person, triple shared"
-              features={['Full surf week', '5 yoga sessions included', 'Balance body & mind']}
+              features={['Full Surf Experience', '5 yoga sessions included', 'Balance body & mind']}
               ctaHref="/packages"
               ctaVariant="coral"
             />
