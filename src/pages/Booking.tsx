@@ -1,4 +1,4 @@
-import { useState, type FormEvent, type CSSProperties, type ChangeEvent } from 'react';
+import { useRef, useState, type FormEvent, type CSSProperties, type ChangeEvent } from 'react';
 import { IconBrandWhatsapp, IconMail, IconBrandInstagram, IconMapPin, IconCheck } from '@tabler/icons-react';
 import Layout from '../components/Layout';
 import PageHero from '../components/PageHero';
@@ -37,37 +37,55 @@ const inputLabelStyle: CSSProperties = {
   letterSpacing: '0.04em',
 };
 
+type Intent = 'whatsapp' | 'email';
+
 export default function Booking() {
   const [form, setForm] = useState<FormState>(INITIAL_FORM);
   const [submitted, setSubmitted] = useState(false);
+  const [emailStatus, setEmailStatus] = useState<'idle' | 'sending' | 'error'>('idle');
+  const intentRef = useRef<Intent>('whatsapp');
 
   const update = (field: keyof FormState) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm((f) => ({ ...f, [field]: e.target.value }));
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const lines = [
-      `Hi! I'd like to book at Cool Surfers Morocco 🤙`,
-      ``,
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      form.phone ? `Phone: ${form.phone}` : null,
-      form.pkg ? `Package: ${form.pkg}` : null,
-      form.arrivalDate ? `Arrival: ${formatDate(form.arrivalDate)}` : null,
-      form.departureDate ? `Departure: ${formatDate(form.departureDate)}` : null,
-      `People: ${form.people}`,
-      form.message ? `\nMessage: ${form.message}` : null,
-    ]
-      .filter(Boolean)
-      .join('\n');
-    window.open(whatsappLink(lines), '_blank');
-    setSubmitted(true);
+    const intent = intentRef.current;
 
-    fetch('/api/booking', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form),
-    }).catch((err) => console.error('Failed to send booking email:', err));
+    if (intent === 'whatsapp') {
+      const lines = [
+        `Hi! I'd like to book at Cool Surfers Morocco 🤙`,
+        ``,
+        `Name: ${form.name}`,
+        `Email: ${form.email}`,
+        form.phone ? `Phone: ${form.phone}` : null,
+        form.pkg ? `Package: ${form.pkg}` : null,
+        form.arrivalDate ? `Arrival: ${formatDate(form.arrivalDate)}` : null,
+        form.departureDate ? `Departure: ${formatDate(form.departureDate)}` : null,
+        `People: ${form.people}`,
+        form.message ? `\nMessage: ${form.message}` : null,
+      ]
+        .filter(Boolean)
+        .join('\n');
+      window.open(whatsappLink(lines), '_blank');
+      setSubmitted(true);
+      return;
+    }
+
+    setEmailStatus('sending');
+    try {
+      const res = await fetch('/api/booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+      setEmailStatus('idle');
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Failed to send booking email:', err);
+      setEmailStatus('error');
+    }
   };
 
   return (
@@ -104,9 +122,13 @@ export default function Booking() {
                   <IconTile size={56} shape="circle" background="var(--color-bark)" style={{ margin: '0 auto 16px' }}>
                     <IconCheck size={28} color="var(--color-lime)" stroke={2.5} />
                   </IconTile>
-                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 700, color: 'var(--color-bark)', marginBottom: 8 }}>Message sent!</h3>
+                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 700, color: 'var(--color-bark)', marginBottom: 8 }}>
+                    {intentRef.current === 'email' ? 'Request sent!' : 'Message sent!'}
+                  </h3>
                   <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: 'rgba(58,42,30,0.75)' }}>
-                    We've opened WhatsApp with your message. We'll reply as soon as possible 🤙
+                    {intentRef.current === 'email'
+                      ? "We've received your booking request by email and sent you a confirmation — we'll reply within 24 hours 🤙"
+                      : "We've opened WhatsApp with your message. We'll reply as soon as possible 🤙"}
                   </p>
                 </div>
               ) : (
@@ -168,11 +190,11 @@ export default function Booking() {
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                     <button
-                      type="button"
+                      type="submit"
                       className="ui-btn"
                       data-variant="secondary"
-                      disabled
-                      title="Coming soon"
+                      disabled={emailStatus === 'sending'}
+                      onClick={() => { intentRef.current = 'email'; }}
                       style={{
                         background: 'var(--color-lime)',
                         color: 'var(--color-bark)',
@@ -186,17 +208,18 @@ export default function Booking() {
                         justifyContent: 'center',
                         gap: 10,
                         width: '100%',
-                        opacity: 0.5,
-                        cursor: 'not-allowed',
+                        opacity: emailStatus === 'sending' ? 0.6 : 1,
+                        cursor: emailStatus === 'sending' ? 'wait' : 'pointer',
                       }}
                     >
                       <IconMail size={18} />
-                      Send Request by Email
+                      {emailStatus === 'sending' ? 'Sending...' : 'Send Request by Email'}
                     </button>
                     <button
                       type="submit"
                       className="ui-btn"
                       data-variant="primary"
+                      onClick={() => { intentRef.current = 'whatsapp'; }}
                       style={{
                         background: 'var(--color-coconut)',
                         color: 'var(--color-bark)',
@@ -216,8 +239,13 @@ export default function Booking() {
                       Send Request on WhatsApp
                     </button>
                   </div>
+                  {emailStatus === 'error' && (
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--color-coral)', textAlign: 'center', lineHeight: 1.5 }}>
+                      Something went wrong sending your request by email. Please try again, or send us a WhatsApp instead.
+                    </p>
+                  )}
                   <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--color-husk)', textAlign: 'center', lineHeight: 1.5 }}>
-                    WhatsApp opens with your details pre-filled. Email requests will be available soon.
+                    WhatsApp opens with your details pre-filled. Email sends your request straight to our inbox, and you'll get a confirmation too.
                   </p>
                 </form>
               )}
