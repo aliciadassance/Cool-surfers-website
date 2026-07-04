@@ -18,7 +18,7 @@ interface FormState {
   message: string;
 }
 
-const INITIAL_FORM: FormState = { name: '', email: '', phone: '', pkg: '', arrivalDate: '', departureDate: '', people: '2', message: '' };
+const INITIAL_FORM: FormState = { name: '', email: '', phone: '', pkg: '', arrivalDate: '', departureDate: '', people: '1', message: '' };
 
 const formatDate = (value: string) => {
   if (!value) return '';
@@ -145,17 +145,17 @@ export default function Booking() {
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                     <div>
-                      <label style={inputLabelStyle}>WhatsApp / Phone</label>
-                      <input type="tel" value={form.phone} onChange={update('phone')} placeholder="+33 6..." />
+                      <label style={inputLabelStyle}>WhatsApp / Phone *</label>
+                      <input type="tel" value={form.phone} onChange={update('phone')} placeholder="+33 6..." required />
                     </div>
                     <div>
-                      <label style={inputLabelStyle}>Number of people</label>
-                      <input type="number" value={form.people} onChange={update('people')} min={1} max={20} placeholder="2" />
+                      <label style={inputLabelStyle}>Number of people *</label>
+                      <input type="number" value={form.people} onChange={update('people')} min={1} max={20} placeholder="1" required />
                     </div>
                   </div>
                   <div>
-                    <label style={inputLabelStyle}>Package interest</label>
-                    <select value={form.pkg} onChange={update('pkg')}>
+                    <label style={inputLabelStyle}>Package interest *</label>
+                    <select value={form.pkg} onChange={update('pkg')} required>
                       {PACKAGE_OPTIONS.map((opt) => (
                         <option key={opt.value} value={opt.value}>
                           {opt.label}
@@ -165,16 +165,17 @@ export default function Booking() {
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                     <div>
-                      <label style={inputLabelStyle}>Arrival date</label>
-                      <input type="date" value={form.arrivalDate} onChange={update('arrivalDate')} />
+                      <label style={inputLabelStyle}>Arrival date *</label>
+                      <input type="date" value={form.arrivalDate} onChange={update('arrivalDate')} required />
                     </div>
                     <div>
-                      <label style={inputLabelStyle}>Departure date</label>
+                      <label style={inputLabelStyle}>Departure date *</label>
                       <input
                         type="date"
                         value={form.departureDate}
                         onChange={update('departureDate')}
                         min={form.arrivalDate || undefined}
+                        required
                       />
                     </div>
                   </div>

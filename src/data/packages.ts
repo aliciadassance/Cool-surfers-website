@@ -14,9 +14,11 @@ export const PRICES: Record<RoomType, { d4: number; d7: number; yoga: number }> 
 
 export const PACKAGE_OPTIONS = [
   { value: '', label: 'Select a package...' },
-  { value: '4-day surf', label: '4-Day Surf Package (from €290)' },
-  { value: '7-night surf', label: '1-Week Surf Package (from €460)' },
-  { value: 'surf-yoga', label: 'Surf & Yoga Week (from €510)' },
+  { value: '4-day surf', label: '4-Day Surf Package' },
+  { value: '7-night surf', label: '1-Week Surf Package' },
+  { value: 'surf-yoga', label: 'Surf & Yoga Week' },
+  { value: 'custom-surf', label: 'Custom length surf experience' },
+  { value: 'custom-surf-yoga', label: 'Custom length surf & yoga experience' },
   { value: 'not sure', label: "Not sure yet — help me choose!" },
 ] as const;
 

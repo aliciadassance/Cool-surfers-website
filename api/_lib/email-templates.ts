@@ -23,6 +23,8 @@ const PACKAGE_LABELS: Record<string, string> = {
   '4-day surf': '4-Day Surf Package',
   '7-night surf': '1-Week Surf Package',
   'surf-yoga': 'Surf & Yoga Week',
+  'custom-surf': 'Custom length surf experience',
+  'custom-surf-yoga': 'Custom length surf & yoga experience',
   'not sure': "Not sure yet — help me choose",
 };
 
