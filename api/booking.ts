@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Resend } from 'resend';
-import { teamNotificationEmail, customerConfirmationEmail, type BookingDetails } from './_lib/email-templates';
+import { teamNotificationEmail, customerConfirmationEmail, type BookingDetails } from './_lib/email-templates.js';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
