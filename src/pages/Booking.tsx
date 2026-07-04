@@ -111,7 +111,7 @@ export default function Booking() {
                 Send us a message
               </p>
               <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(26px,3vw,38px)', fontWeight: 700, color: 'var(--color-bark)', lineHeight: 1.15, marginBottom: 8 }}>
-                Book your spot or ask anything.
+                Book your spot
               </h2>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--color-bark)', opacity: 0.6, lineHeight: 1.7, marginBottom: 36 }}>
                 Fill in the form and we'll reply within 24 hours. Or if you prefer, just send us a WhatsApp — it's quicker!
