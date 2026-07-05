@@ -38,7 +38,7 @@ export default function PackageCarousel({ children, gridClassName = 'grid-3' }: 
           }}
         >
           {items.map((child, i) => (
-            <div key={i} style={{ flex: '0 0 85%', scrollSnapAlign: 'start' }}>
+            <div key={i} style={{ flex: '0 0 85%', scrollSnapAlign: 'start', display: 'flex' }}>
               {child}
             </div>
           ))}
