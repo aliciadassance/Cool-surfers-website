@@ -16,6 +16,7 @@ export const IMAGES = {
   roomPrivate: `${BASE}/room-private.jpg`,
   roomTriple: `${BASE}/room-triple.jpg`,
   roomDouble: `${BASE}/room-double.jpg`,
+  roomTwinDouble: `${BASE}/room-twin-double.jpg`,
   fallSurf: `${BASE}/fall-surf.png`,
   tamraghtMain: `${BASE}/tamraght-main.jpg`,
   contactHero: `${BASE}/contact-hero.jpg`,

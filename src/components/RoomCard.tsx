@@ -36,7 +36,7 @@ export default function RoomCard({ image, tagLabel, tagBg = 'var(--color-husk)',
         <div style={{ marginBottom: 24 }}>
           <CheckList items={features} textColor={featureColor} fontSize={13} size={14} />
         </div>
-        <div style={{ borderTop: `1px solid ${dividerColor}`, paddingTop: 20, display: 'flex', justifyContent: 'flex-end' }}>
+        <div style={{ marginTop: 'auto', borderTop: `1px solid ${dividerColor}`, paddingTop: 20, display: 'flex', justifyContent: 'flex-end' }}>
           <Button href={ctaHref} variant={dark ? 'primary' : 'dark'} size="sm">
             Select your package →
           </Button>

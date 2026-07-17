@@ -30,10 +30,10 @@ const ROOMS = [
     dark: false,
   },
   {
-    image: IMAGES.roomDouble,
-    title: 'Double Shared Room',
-    description: "Two beds in a shared room, with the bathroom shared between just two rooms for extra quiet. Great for two friends traveling together, or couples who don't mind sharing.",
-    features: ['Shared bathroom', 'More intimate space', 'Fresh linen & towels'],
+    image: IMAGES.roomTwinDouble,
+    title: 'Twin / Double Room',
+    description: 'This room is ideal for couples or friends. It can be set up either with one double bed for couples or two separate twin beds for friends who prefer separate beds. The room includes a private bathroom and a balcony, offering more comfort and privacy.',
+    features: ['Private bathroom', 'Balcony', 'Fresh linen & towels'],
     dark: false,
   },
   {
@@ -42,8 +42,8 @@ const ROOMS = [
     tagBg: 'var(--color-lime)',
     tagColor: 'var(--color-bark)',
     title: 'Private Room',
-    description: 'Your own space after long days in the ocean, with a private bathroom and a balcony to dry your wetsuit or watch the sunset over Tamraght. Ideal for couples or anyone who values privacy.',
-    features: ['Private bathroom', 'Your own space', 'Perfect for couples'],
+    description: 'This option is a smaller private room, suitable for one person or guests looking for a simpler option. It comes with a shared bathroom',
+    features: ['Shared bathroom', 'Great for solo guests', 'Fresh linen & towels'],
     dark: true,
   },
 ];

@@ -42,8 +42,8 @@ const SEASON_ICONS = {
 
 const ROOM_TABS: { value: RoomType; label: string }[] = [
   { value: 'triple', label: 'Triple Shared' },
-  { value: 'double', label: 'Double Shared' },
-  { value: 'private', label: 'Private Room' },
+  { value: 'double', label: 'Private Room' },
+  { value: 'private', label: 'Double or Twin Room' },
 ];
 
 export default function Packages() {

@@ -2,8 +2,8 @@ export type RoomType = 'triple' | 'double' | 'private';
 
 export const ROOM_LABELS: Record<RoomType, string> = {
   triple: 'Triple Shared Room',
-  double: 'Double Shared Room',
-  private: 'Private Room',
+  double: 'Private Room',
+  private: 'Double or Twin Room',
 };
 
 export const PRICES: Record<RoomType, { d4: number; d7: number; yoga: number }> = {
